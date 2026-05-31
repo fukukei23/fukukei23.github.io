@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fukukei23 — ポートフォリオ</title>
+<style>
+  :root {
+    --bg:#0d1117; --card:#161b22; --card2:#1c2128;
+    --text:#e6edf3; --muted:#8b949e; --border:#30363d;
+    --accent:#58a6ff; --green:#3fb950; --purple:#bc8cff;
+    --yellow:#e3b341; --red:#f85149;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  .hero { text-align:center; padding:64px 16px 48px; }
+  .avatar {
+    width:88px; height:88px; border-radius:50%; border:3px solid var(--border);
+    font-size:2.4em; line-height:88px; background:var(--card);
+    display:inline-block; margin-bottom:16px;
+  }
+  h1 { font-size:1.8em; margin-bottom:8px; }
+  .bio { color:var(--muted); max-width:520px; margin:0 auto 24px; font-size:0.95em; }
+  .links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .links a { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; border:1px solid var(--border); color:var(--text); font-size:0.88em; background:var(--card); }
+  .links a:hover { border-color:var(--accent); text-decoration:none; }
+
+  .container { max-width:900px; margin:0 auto; padding:0 16px 48px; }
+
+  section { margin-bottom:48px; }
+  h2 { font-size:1.1em; color:var(--text); border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:16px; }
+
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+  .card {
+    background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:16px 18px; transition:border-color 0.2s;
+  }
+  .card:hover { border-color:var(--accent); text-decoration:none; }
+  .card-title { color:var(--accent); font-weight:600; font-size:0.97em; margin-bottom:4px; }
+  .card-desc { color:var(--muted); font-size:0.82em; margin-bottom:10px; }
+  .card-tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag { background:var(--card2); color:var(--muted); padding:2px 8px; border-radius:12px; font-size:0.72em; }
+
+  .site-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+  .site-card {
+    background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:18px 16px; text-align:center; transition:border-color 0.2s;
+  }
+  .site-card:hover { border-color:var(--green); text-decoration:none; }
+  .site-icon { font-size:2em; margin-bottom:8px; }
+  .site-name { color:var(--text); font-weight:600; font-size:0.95em; }
+  .site-desc { color:var(--muted); font-size:0.78em; margin-top:4px; }
+
+  .zenn-section { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+  .zenn-section h3 { color:var(--purple); font-size:1em; margin-bottom:8px; }
+  .zenn-section p { color:var(--muted); font-size:0.88em; }
+
+  footer { text-align:center; padding:24px 16px 32px; color:var(--muted); font-size:0.82em; border-top:1px solid var(--border); }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="avatar">👤</div>
+  <h1>fukukei23</h1>
+  <p class="bio">非IT公務員からプロンプトエンジニアリングで本格AIシステムを構築。<br>マルチエージェントオーケストレーション、LLMルーティング、テスト駆動開発。</p>
+  <div class="links">
+    <a href="https://github.com/fukukei23">GitHub</a>
+    <a href="https://zenn.dev/fukukei23">Zenn</a>
+    <a href="https://github.com/fukukei23/obsidian-ssot">SSOT</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ガイドサイト -->
+  <section>
+    <h2>📖 ガイドサイト（4冊）</h2>
+    <div class="site-grid">
+      <a class="site-card" href="https://fukukei23.github.io/ssot-guide/">
+        <div class="site-icon">🗂️</div>
+        <div class="site-name">SSOT Guide</div>
+        <div class="site-desc">システム設計・知識管理</div>
+      </a>
+      <a class="site-card" href="https://fukukei23.github.io/claude-code-guide/">
+        <div class="site-icon">🤖</div>
+        <div class="site-name">Claude Code Guide</div>
+        <div class="site-desc">CLI 完全ガイド</div>
+      </a>
+      <a class="site-card" href="https://fukukei23.github.io/guides/">
+        <div class="site-icon">📚</div>
+        <div class="site-name">技術ガイド集</div>
+        <div class="site-desc">47冊のクイックリファレンス</div>
+      </a>
+      <a class="site-card" href="https://fukukei23.github.io/ssh-guide/">
+        <div class="site-icon">📱</div>
+        <div class="site-name">SSH Guide</div>
+        <div class="site-desc">Androidからの操作</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Zenn -->
+  <section>
+    <div class="zenn-section">
+      <h3>📝 Zenn 技術記事</h3>
+      <p><a href="https://zenn.dev/fukukei23">https://zenn.dev/fukukei23</a><br>
+      Claude Code、AIコスト最適化、スクレイピング等の技術記事</p>
+    </div>
+  </section>
+
+  <!-- メインプロジェクト -->
+  <section>
+    <h2>🚀 注力プロジェクト</h2>
+    <div class="card-grid">
+      <a class="card" href="https://github.com/fukukei23/NexusCore">
+        <div class="card-title">NexusCore</div>
+        <div class="card-desc">マルチエージェントAIフレームワーク: 14エージェント, 5,300+テスト, プラグインシステム</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Gradio</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/atelier-kyo-manager">
+        <div class="card-title">atelier-kyo-manager</div>
+        <div class="card-desc">物販管理システム: 自動発注ステートマシン, AIチャットボット, 1,600+テスト</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Playwright</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/reserve-optimizer">
+        <div class="card-title">reserve-optimizer</div>
+        <div class="card-desc">法律事務所LINE予約Bot: 会話型ステートマシン, Stripe決済, 970テスト</div>
+        <div class="card-tags"><span class="tag">GAS</span><span class="tag">Cloudflare</span><span class="tag">Stripe</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/pw-stealth-enhanced">
+        <div class="card-title">pw-stealth-enhanced</div>
+        <div class="card-desc">Playwright用アンチフィンガープリントライブラリ</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">Playwright</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/openclaw-stack">
+        <div class="card-title">OpenClaw Stack</div>
+        <div class="card-desc">AIエージェントインフラ: VPS + ローカル二段階デプロイ, Caddy, 4層セキュリティ</div>
+        <div class="card-tags"><span class="tag">Docker</span><span class="tag">Caddy</span><span class="tag">UFW</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ツール -->
+  <section>
+    <h2>🛠️ ツール・ライブラリ</h2>
+    <div class="card-grid">
+      <a class="card" href="https://github.com/fukukei23/claude-cost-optimizer">
+        <div class="card-title">claude-cost-optimizer</div>
+        <div class="card-desc">LLMコスト最適化: ピーク時間帯ブロック・自動フォールバック</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">LLM</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/contextforge">
+        <div class="card-title">contextforge</div>
+        <div class="card-desc">コンテキスト最適化ツール</div>
+        <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">ツール</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/orchestrix">
+        <div class="card-title">orchestrix</div>
+        <div class="card-desc">オーケストレーションツール</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">OSS</span></div>
+      </a>
+      <a class="card" href="https://github.com/fukukei23/sentinel-governance">
+        <div class="card-title">sentinel-governance</div>
+        <div class="card-desc">ガバナンス自動化</div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">ガバナンス</span></div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2024–2026 fukukei23 · <a href="https://github.com/fukukei23">GitHub</a> · 全サイト <a href="https://github.com/fukukei23/ssot-guide">SSOT</a> 管理</p>
+</footer>
+
+</body>
+</html>
