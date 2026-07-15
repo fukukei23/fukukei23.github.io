@@ -111,7 +111,7 @@ a { color: #2563eb; text-decoration: none; }
       <ul>
         <li><b>MCP 10+サーバー統合</b>: Brave Search / GitHub / Playwright / Discord / Context7 / Exa等をシームレスに連携</li>
         <li><b>Subagent並列実行</b>: 独立タスクを4並列でディスパッチ — コードレビュー・テスト・探索を同時実行</li>
-        <li><b>Memory</b>: セッション横断の永続記憶（ユーザー属性・フィードバック・プロジェクト文脈）でコンテキスト喪失ゼロ</li>
+        <li><b>各AIの一次設定</b>（CLAUDE.md / Memory）は後述の <b>Obsidian SSOT</b> の必要部分を同期・反映</li>
         <li>Windows Terminal 4分割（WSL2）で4セッション同時管理、最大4×N画面</li>
       </ul>
     </div>
@@ -122,7 +122,7 @@ a { color: #2563eb; text-decoration: none; }
     <span class="tag">Custom Skills</span>
     <span class="tag">MCP 10+ Servers</span>
     <span class="tag">Subagent 並列実行</span>
-    <span class="tag">Persistent Memory</span>
+    <span class="tag">Obsidian SSOT</span>
     <span class="tag">CronCreate</span>
   </div>
   <div class="grid" style="margin-top: 8px;">
@@ -142,6 +142,17 @@ a { color: #2563eb; text-decoration: none; }
         <li>スマホブラウザ最適化済み — 移動中でも即座に参照可能</li>
       </ul>
     </div>
+  </div>
+  <div class="card" style="border-color: #2563eb; background: #f8fafc;">
+    <h3>Obsidian SSOT — プロジェクトライフサイクル管理と知識の資産化</h3>
+    <ul>
+      <li><b>複数AIエージェントが共有する自設計の永続記憶基盤</b>: Claude Code / Cursor / Codex / GLM 等、AIを替えてもプロジェクト文脈と判断履歴が一貫して引き継がれる（単一AIの閉じた記憶でなし）</li>
+      <li><b>プロジェクトの全ライフサイクルを一貫管理</b>: 要件→計画→実装→意思決定→成果→残課題→次アクション→handoff（引継ぎ）の循環を、セッションを跨いでも迷子なく回し続ける</li>
+      <li><b>知識の資産化（複利）</b>: 積み上げた判断・スキル・運用ルールが再利用可能な資産として結晶化 — 新プロジェクトをゼロから考えず速く立ち上げる</li>
+      <li><b>規模の実績</b>: 判断記録 <b>1,085件</b>（28プロジェクト分）/ handoff <b>314件</b>（引継ぎ）/ カスタムスキル <b>34個</b> / 日次運用 <b>109日分</b></li>
+      <li><b>公開ガイド16リポジトリは本SSOTから派生生成</b>（convert.py経由）— 非公開の知識基盤が実運用されていることの公開証拠</li>
+      <li>副次: pre-commit / detect-secrets / 破壊コマンドガード等の安全弁で運用品質を担保</li>
+    </ul>
   </div>
 </div>
 
@@ -269,7 +280,7 @@ a { color: #2563eb; text-decoration: none; }
 <h2>スキルマップ</h2>
 <table>
   <tr><th>カテゴリ</th><th>スキル</th><th>レベル</th></tr>
-  <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Memory永続化・CronCreate自律ループ</td><td><b>★★★</b></td></tr>
+  <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td></tr>
   <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング（3層/8プロバイダー）・コスト最適化（$180/月）</td><td>★★★</td></tr>
   <tr><td>LLM活用</td><td>GLM / MiniMax / Claude / GPT / Gemini（8プロバイダー実運用3ヶ月）</td><td>★★★</td></tr>
   <tr><td>インフラ</td><td>VPS + Docker + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td></tr>
@@ -282,7 +293,7 @@ a { color: #2563eb; text-decoration: none; }
   &nbsp;|&nbsp;
   Zenn: <a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a>
   &nbsp;|&nbsp;
-  最終更新: 2026-07-11
+  最終更新: 2026-07-15
 </div>
 
 </body>
