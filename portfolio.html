@@ -87,12 +87,12 @@ a { color: #2563eb; text-decoration: none; }
   <div class="stat"><div class="num">約15万行</div><div class="label">アプリケーションコード（1年累積）</div></div>
   <div class="stat"><div class="num">約16万行</div><div class="label">テストコード（1年累積）</div></div>
   <div class="stat"><div class="num">8,000+</div><div class="label">テストケース</div></div>
-  <div class="stat"><div class="num">4,000+</div><div class="label">月間コミット（直近30日実績）</div></div>
-  <div class="stat"><div class="num">8,700+</div><div class="label">総コミット（全リポジトリ）</div></div>
+  <div class="stat"><div class="num">10,000+</div><div class="label">総コミット（全リポジトリ）</div></div>
   <div class="stat"><div class="num">23</div><div class="label">GitHubリポジトリ（公開14+非公開9）</div></div>
   <div class="stat"><div class="num">20</div><div class="label">技術記事（公開済み）</div></div>
-  <div class="stat"><div class="num">約5ヶ月</div><div class="label">24h本番運用</div></div>
+  <div class="stat"><div class="num">約6ヶ月</div><div class="label">24h本番運用</div></div>
 </div>
+<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08実測値（SSOT正典から転記・丸め表記）</div>
 
 <div class="accent">
   <h2>武器: Claude Codeフルスタックカスタマイズで開発生産性を最大化</h2>
@@ -149,7 +149,7 @@ a { color: #2563eb; text-decoration: none; }
       <li><b>複数AIエージェントが共有する自設計の永続記憶基盤</b>: Claude Code / Cursor / Codex / GLM 等、AIを替えてもプロジェクト文脈と判断履歴が一貫して引き継がれる（単一AIの閉じた記憶でなし）</li>
       <li><b>プロジェクトの全ライフサイクルを一貫管理</b>: 要件→計画→実装→意思決定→成果→残課題→次アクション→handoff（引継ぎ）の循環を、セッションを跨いでも迷子なく回し続ける</li>
       <li><b>知識の資産化（複利）</b>: 積み上げた判断・スキル・運用ルールが再利用可能な資産として結晶化 — 新プロジェクトをゼロから考えず速く立ち上げる</li>
-      <li><b>規模の実績</b>: 判断記録 <b>1,095件</b>（28プロジェクト分）/ handoff <b>319件</b>（引継ぎ）/ カスタムスキル <b>34個</b> / 日次運用 <b>110日分</b></li>
+      <li><b>規模の実績</b>: 判断記録（AIエージェントへの意思決定ログ） <b>1,300+件</b>（30+プロジェクト分・2026-08実測）/ handoff（作業引き継ぎ記録） <b>490+件</b> / 自作スキル <b>30+個</b>（導入含め全117スキル運用） / 日次運用 <b>140+日分</b></li>
       <li><b>公開ガイド15リポジトリは本SSOTから派生生成</b>（convert.py経由）— 非公開の知識基盤が実運用されていることの公開証拠</li>
       <li>副次: pre-commit / detect-secrets / 破壊コマンドガード等の安全弁で運用品質を担保</li>
     </ul>
@@ -193,7 +193,7 @@ a { color: #2563eb; text-decoration: none; }
 <h2>柱2: OpenClaw — 24時間AIエージェント運用</h2>
 <div class="grid">
   <div class="card">
-    <h3>2台体制で約5ヶ月連続稼働中</h3>
+    <h3>2台体制・2026年2月より連続稼働中（約6ヶ月）</h3>
     <ul>
       <li><b>フクロウ</b>: VPS（本番）24時間常時稼働</li>
       <li><b>よつば</b>: ローカルPC（開発・実験用）</li>
@@ -283,11 +283,11 @@ a { color: #2563eb; text-decoration: none; }
 <h2>スキルマップ</h2>
 <table>
   <tr><th>カテゴリ</th><th>スキル</th><th>レベル</th><th>客観指標（根拠）</th></tr>
-  <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td><td>判断記録1,095件 / カスタムスキル34個 / 自律ループ稼働中 / SSOT 110日運用</td></tr>
+  <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td><td>判断記録1,300+件 / 自作スキル30+個 / 自律ループ稼働中 / SSOT 140+日運用</td></tr>
   <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング・コスト最適化</td><td>★★★</td><td>NexusCore 12エージェント設計・5,000+テスト / ルーティング3層$180/月</td></tr>
   <tr><td>RAG</td><td>チャンキング / ベクトルDB（ChromaDB） / ハイブリッド検索（RRF） / 精度評価（Recall・MRR）</td><td>★★☆</td><td>ssot-search v2: 4,000+文書・30分毎差分更新・Recall@5 0.744（旧検索0.026から改善）</td></tr>
   <tr><td>LLM活用</td><td>GLM / MiniMax / Claude の3層ルーティング設計・運用</td><td>★★★</td><td>3層実運用・27億トークン/月・約67%コスト削減</td></tr>
-  <tr><td>インフラ</td><td>VPS + Docker + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番約5ヶ月・2台体制（拡張中）</td></tr>
+  <tr><td>インフラ</td><td>VPS + Docker + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番・2026年2月より連続稼働・2台体制（拡張中）</td></tr>
   <tr><td>AI駆動実装</td><td>Python / FastAPI / Docker / GitHub Actions をAI指示で構築・運用（設計・指示・動作確認・本番運用を担当）</td><td>★★☆</td><td>アプリ約15万行を設計〜本番運用（拡張中）</td></tr>
   <tr><td>テスト</td><td>pytest / ミューテーションテスト / カバレッジ80%+ / セキュリティスキャン</td><td>★★☆</td><td>テスト8,000+ / NexusCore約85%カバレッジ（拡張中）</td></tr>
 </table>
