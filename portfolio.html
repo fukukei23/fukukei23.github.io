@@ -156,6 +156,38 @@ a { color: #2563eb; text-decoration: none; }
   </div>
 </div>
 
+<h2>AI駆動開発の失敗モードと対策 — 実例による検出機構</h2>
+<div class="accent" style="border-color: #dc2626;">
+  <h2 style="border-left-color: #dc2626;">テスト全緑・CI全緑なのに、本番の定期処理が1件も動いていなかった</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>発見 — 何が起きていたか</h3>
+      <ul>
+        <li>対象: BUYMA転売管理システム（Flask + Celery + Redis・37,000行超）</li>
+        <li>テスト<b>2,000件超が全て緑・CIも緑</b>の状態で、<b>Celeryワーカーのタスク登録が0件</b>。価格監視の定期実行が4時間ごとに<b>無音で失敗</b>し続けていた（タスク登録漏れ + タスク名不一致の二重の不整合）</li>
+        <li>テストが緑の理由: テストは関数を直接呼ぶだけで、<b>「ワーカーがそのタスクを登録しているか」を検証していなかった</b></li>
+        <li>1度目の包括レビューはこのバグを見逃し、翌日の<b>独立した2度目のレビュー</b>で発見</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>対策 — どう検出し、どう直したか</h3>
+      <ul>
+        <li><b>独立レビューを重ねる</b>: 異なるセッション/異なるLLMに独立レビューさせる。指摘は<b>検証コマンドに変換して実測結果だけで採否</b>（誤った指摘はgrep実測で参照0件を確認し却下）</li>
+        <li><b>修復</b>: ワーカーのタスク登録を修正し、<b>「定期実行の全タスク名がワーカーに登録済みか」をassertする回帰テストを新設</b>——同じ失敗が再び「緑」に隠れないようにした</li>
+        <li><b>記録</b>: 発見から修復までの判断過程をナレッジベース（判断記録1,300+件）に保存し、同じ失敗モードの再発防止に再利用</li>
+      </ul>
+    </div>
+  </div>
+  <div style="font-size: 11px;">
+    <span class="tag">Python / Flask / Celery / Redis</span>
+    <span class="tag">複数LLM独立レビュー</span>
+    <span class="tag">実測裁定</span>
+    <span class="tag">回帰テスト新設</span>
+    <span class="tag">判断記録</span>
+  </div>
+  <div style="font-size: 12px; margin-top: 8px; opacity: 0.9;">💡 AIにコードを書かせる開発で最も危険なのは「検証が通ったように見える」こと。個別のバグよりも、<b>AIの出力を鵜呑みにしない検出機構</b>（独立レビュー × 実測裁定 × 記録）を開発プロセスに組み込むことを主眼にしています。</div>
+</div>
+
 <h2>柱1: NexusCore — AIエージェント開発フレームワーク</h2>
 <div class="grid">
   <div class="card">
