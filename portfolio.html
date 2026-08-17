@@ -258,6 +258,7 @@ a { color: #2563eb; text-decoration: none; }
   <tr><td>Atelier Kyo Manager</td><td>BUYMA転売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
   <tr><td>LINE予約システム</td><td>LINE Bot + Stripe決済 + Cloudflare Workersで構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
   <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・OAuth1永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
+  <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格RAG検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + ChromaDB）・ベクトル+字句のハイブリッド検索・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（Recall@5 0.026→0.744）</td><td>非公開</td></tr>
   <tr><td>Zenn自動投稿パイプライン</td><td>GitHub Actions（discover.yml / publish.yml）でトピック自動発掘 → 記事公開を連鎖自動化（公開リポジトリ・稼働中）</td><td><a href="https://github.com/fukukei23/zenn">GitHub</a></td></tr>
   <tr><td>Claude Code Guide</td><td>Claude Code CLIの基礎から応用までを完全解説するHTMLガイド（12章・Mermaid図7箇所・モバイル対応）</td><td><a href="https://fukukei23.github.io/claude-code-guide/">GitHub Pages</a></td></tr>
   <tr><td>OpenClaw Stack Guide</td><td>AIエージェント構築・運用の完全ガイドサイト（11章・モバイル最適化）</td><td><a href="https://fukukei23.github.io/openclaw-stack-guide/">GitHub Pages</a></td></tr>
@@ -284,6 +285,7 @@ a { color: #2563eb; text-decoration: none; }
   <tr><th>カテゴリ</th><th>スキル</th><th>レベル</th><th>客観指標（根拠）</th></tr>
   <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td><td>判断記録1,095件 / カスタムスキル34個 / 自律ループ稼働中 / SSOT 110日運用</td></tr>
   <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング・コスト最適化</td><td>★★★</td><td>NexusCore 12エージェント設計・5,000+テスト / ルーティング3層$180/月</td></tr>
+  <tr><td>RAG</td><td>チャンキング / ベクトルDB（ChromaDB） / ハイブリッド検索（RRF） / 精度評価（Recall・MRR）</td><td>★★☆</td><td>ssot-search v2: 4,000+文書・30分毎差分更新・Recall@5 0.744（旧検索0.026から改善）</td></tr>
   <tr><td>LLM活用</td><td>GLM / MiniMax / Claude の3層ルーティング設計・運用</td><td>★★★</td><td>3層実運用・27億トークン/月・約67%コスト削減</td></tr>
   <tr><td>インフラ</td><td>VPS + Docker + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番約5ヶ月・2台体制（拡張中）</td></tr>
   <tr><td>AI駆動実装</td><td>Python / FastAPI / Docker / GitHub Actions をAI指示で構築・運用（設計・指示・動作確認・本番運用を担当）</td><td>★★☆</td><td>アプリ約15万行を設計〜本番運用（拡張中）</td></tr>
