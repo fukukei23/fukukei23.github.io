@@ -70,6 +70,11 @@ a { color: #2563eb; text-decoration: none; }
   page-break-inside: avoid;
 }
 .accent h2 { background: transparent; border-left: 3px solid #f59e0b; margin-top: 0; }
+/* 用語リンク（本文→末尾用語集へのアンカー・印刷PDFでも内部リンク保持） */
+a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color: #2563eb; text-underline-offset: 3px; }
+#glossary { page-break-before: always; }
+#glossary dt { font-weight: 700; color: #1e40af; margin-top: 10px; }
+#glossary dd { margin: 2px 0 0 0; font-size: 12px; color: #374151; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -81,9 +86,9 @@ a { color: #2563eb; text-decoration: none; }
     GitHub
   </a>
 </div>
-<div class="subtitle">AIエージェント開発・運用 / Python / LLMルーティング / 2025年5月〜活動開始</div>
+<div class="subtitle">AIエージェント開発・運用 / Python / <a class="gl" href="#gl-llm-routing">LLMルーティング</a> / 2025年5月〜活動開始</div>
 <p style="margin: 8px 0 10px; line-height: 1.7;">
-  コードはAI（Claude Code等）が生成し、自身は<b>要件の言語化・設計・検証・運用</b>に集中するAI駆動開発スタイルです。下記の数値はAI生成を含む出力規模であり（手書き行数ではありません）、品質は<b>複数LLM独立レビュー × 実測裁定 × 記録</b>のプロセスで担保しています。ベースは陸上自衛隊19年で培った<b>計画策定・30-40人のチーム指揮・文書作成</b>——「何を作るかを固め、形になったものを検証する」仕事をAI時代に組み直したものです。
+  コードはAI（<a class="gl" href="#gl-claude-code">Claude Code</a>等）が生成し、自身は<b>要件の言語化・設計・検証・運用</b>に集中するAI駆動開発スタイルです。下記の数値はAI生成を含む出力規模であり（手書き行数ではありません）、品質は<b>複数LLM独立レビュー × 実測裁定 × 記録</b>のプロセスで担保しています。ベースは陸上自衛隊19年で培った<b>計画策定・30-40人のチーム指揮・文書作成</b>——「何を作るかを固め、形になったものを検証する」仕事をAI時代に組み直したものです。
 </p>
 
 <div class="stats">
@@ -103,19 +108,19 @@ a { color: #2563eb; text-decoration: none; }
     <div class="card">
       <h3>Hooks &amp; Skills — 開発ライフサイクル完全自動化</h3>
       <ul>
-        <li><b>5種のHooks</b>でライフサイクル制御: PreToolUse（19パターン破壊ガード）/ PostToolUse（CSV履歴）/ SessionStart（ハンドオフ表示）/ Stop（日記追記）/ Notification（Discord連携）</li>
-        <li><b>カスタムSkills</b>: TDD / 体系的デバッグ / コードレビュー / プラン執行等の再利用可能ワークフローを定義</li>
-        <li><b>CronCreate自律ループ</b>: Issue自動実装・定期lint・自動コミット等の無人開発を稼働中</li>
-        <li>LLMルーティング: 月27億トークンをGLM/MiniMax/Sonnetの3層に振り分け、自作プロキシで約67%コスト削減・$180/月で運用。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
+        <li><b>5種の<a class="gl" href="#gl-hooks">Hooks</a></b>でライフサイクル制御: PreToolUse（19パターン破壊ガード）/ PostToolUse（CSV履歴）/ SessionStart（ハンドオフ表示）/ Stop（日記追記）/ Notification（Discord連携）</li>
+        <li><b>カスタム<a class="gl" href="#gl-skills">Skills</a></b>: TDD / 体系的デバッグ / コードレビュー / プラン執行等の再利用可能ワークフローを定義</li>
+        <li><b><a class="gl" href="#gl-croncreate">CronCreate</a>自律ループ</b>: Issue自動実装・定期lint・自動コミット等の無人開発を稼働中</li>
+        <li>LLMルーティング: 月27億トークンを<a class="gl" href="#gl-models">GLM/MiniMax/Sonnet</a>の3層に振り分け、自作プロキシで約67%コスト削減・$180/月で運用。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
       </ul>
     </div>
     <div class="card">
       <h3>MCP &amp; Subagent — 外部ツール統合と並列実行</h3>
       <ul>
-        <li><b>MCP 10+サーバー統合</b>: Brave Search / GitHub / Playwright / Discord / Context7 / Exa等をシームレスに連携</li>
-        <li><b>Subagent並列実行</b>: 独立タスクを4並列でディスパッチ — コードレビュー・テスト・探索を同時実行</li>
+        <li><b><a class="gl" href="#gl-mcp">MCP</a> 10+サーバー統合</b>: Brave Search / GitHub / Playwright / Discord / Context7 / Exa等をシームレスに連携</li>
+        <li><b><a class="gl" href="#gl-subagent">Subagent</a>並列実行</b>: 独立タスクを4並列でディスパッチ — コードレビュー・テスト・探索を同時実行</li>
         <li><b>各AIの一次設定</b>（CLAUDE.md / Memory）は後述の <b>Obsidian SSOT</b> の必要部分を同期・反映</li>
-        <li>Windows Terminal 4分割（WSL2）で4セッション同時管理、最大4×N画面</li>
+        <li>Windows Terminal 4分割（<a class="gl" href="#gl-wsl2">WSL2</a>）で4セッション同時管理、最大4×N画面</li>
       </ul>
     </div>
   </div>
@@ -132,7 +137,7 @@ a { color: #2563eb; text-decoration: none; }
     <div class="card">
       <h3>どこでも開発 — モバイルフルスタック環境</h3>
       <ul>
-        <li>Tailscale VPN + SSH + tmux でスマホから Claude Code CLI を操作</li>
+        <li><a class="gl" href="#gl-tailscale">Tailscale VPN</a> + SSH + <a class="gl" href="#gl-tmux">tmux</a> でスマホから Claude Code CLI を操作</li>
         <li>外出先の隙間時間でもAI開発セッションを継続可能</li>
         <li>知見をガイド15リポジトリ（50冊超）として GitHub Pages で公開（モバイル最適化）</li>
       </ul>
@@ -166,8 +171,8 @@ a { color: #2563eb; text-decoration: none; }
     <div class="card">
       <h3>発見 — 何が起きていたか</h3>
       <ul>
-        <li>対象: BUYMA転売管理システム（Flask + Celery + Redis・37,000行超）</li>
-        <li>テスト<b>2,000件超が全て緑・CIも緑</b>の状態で、<b>Celeryワーカーのタスク登録が0件</b>。価格監視の定期実行が4時間ごとに<b>無音で失敗</b>し続けていた（タスク登録漏れ + タスク名不一致の二重の不整合）</li>
+        <li>対象: BUYMA転売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>・37,000行超）</li>
+        <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、<b>Celeryワーカーのタスク登録が0件</b>。価格監視の定期実行が4時間ごとに<b>無音で失敗</b>し続けていた（タスク登録漏れ + タスク名不一致の二重の不整合）</li>
         <li>テストが緑の理由: テストは関数を直接呼ぶだけで、<b>「ワーカーがそのタスクを登録しているか」を検証していなかった</b></li>
         <li>1度目の包括レビューはこのバグを見逃し、翌日の<b>独立した2度目のレビュー</b>で発見</li>
         <li>見つけたのはコード読解ではなく<b>「1度目で終わらず、自分に2度目の独立レビューを課す」運用ルール</b>——AIレビューを鵜呑みにせず重ねることで、機能停止級の欠陥を拾い上げた</li>
@@ -193,14 +198,14 @@ a { color: #2563eb; text-decoration: none; }
 </div>
 
 <h2>柱1: NexusCore — AIエージェント開発フレームワーク</h2>
-<div style="font-size: 12px; margin: 2px 0 8px;">何に使えるか: 複数LLMの性能とコストをタスク種別に合わせて使い分ける、<b>業務自動化・AIアプリ開発の基盤フレームワーク</b>（LLM導入のPoC〜本番運用に適用可能な設計）</div>
+<div style="font-size: 12px; margin: 2px 0 8px;">何に使えるか: 複数<a class="gl" href="#gl-llm">LLM</a>の性能とコストをタスク種別に合わせて使い分ける、<b>業務自動化・AIアプリ開発の基盤フレームワーク</b>（LLM導入のPoC〜本番運用に適用可能な設計）</div>
 <div class="grid">
   <div class="card">
     <h3>マルチエージェントシステム</h3>
     <ul>
       <li>12種の専門エージェント（要件分析→設計→コード生成→テスト→レビュー）</li>
       <li>各フェーズを自動協調で完結</li>
-      <li>2層品質ゲート（静的解析 + ミューテーションテスト）</li>
+      <li>2層品質ゲート（静的解析 + <a class="gl" href="#gl-mutation">ミューテーションテスト</a>）</li>
     </ul>
   </div>
   <div class="card">
@@ -224,7 +229,7 @@ a { color: #2563eb; text-decoration: none; }
 <div style="font-size: 11px;">
   GitHub: <a href="https://github.com/fukukei23/NexusCore">fukukei23/NexusCore</a>
   テスト: 5,000+ケース
-  API: FastAPI REST + OpenAPI SDK自動生成
+  API: <a class="gl" href="#gl-fastapi">FastAPI</a> REST + OpenAPI SDK自動生成
 </div>
 
 <h2>柱2: OpenClaw — 24時間AIエージェント運用</h2>
@@ -232,10 +237,10 @@ a { color: #2563eb; text-decoration: none; }
   <div class="card">
     <h3>2台体制・2026年2月より連続稼働中（約6ヶ月）</h3>
     <ul>
-      <li><b>フクロウ</b>: VPS（本番）24時間常時稼働</li>
+      <li><b>フクロウ</b>: <a class="gl" href="#gl-vps">VPS</a>（本番）24時間常時稼働</li>
       <li><b>よつば</b>: ローカルPC（開発・実験用）</li>
       <li>Discord統合: チャット監視・TODO抽出・リマインド・通知</li>
-      <li><b>連続稼働を一人で維持</b>: 2026年2月より24h運用を継続中（監視は3層Heartbeat）——構築だけでなく<b>「止めずに保つ」運用の実績</b></li>
+      <li><b>連続稼働を一人で維持</b>: 2026年2月より24h運用を継続中（監視は3層<a class="gl" href="#gl-heartbeat">Heartbeat</a>）——構築だけでなく<b>「止めずに保つ」運用の実績</b></li>
     </ul>
   </div>
   <div class="card">
@@ -264,7 +269,7 @@ a { color: #2563eb; text-decoration: none; }
     <div class="card">
       <h3>プロジェクト概要</h3>
       <ul>
-        <li>ライブ配信プラットフォーム「SHOWROOM」の使用楽曲報告（JASRAC/NexToneコード入力）を<b>Excelから全自動化</b>するデスクトップツール</li>
+        <li>ライブ配信プラットフォーム「SHOWROOM」の使用楽曲報告（<a class="gl" href="#gl-jasrac">JASRAC/NexTone</a>コード入力）を<b>Excelから全自動化</b>するデスクトップツール</li>
         <li>ココナラ（クラウドソーシング）で受注し、<b class="highlight">納品済み・顧客満足</b></li>
         <li>Python環境がないクライアント向けに<b>exeファイル</b>（ダブルクリック即実行）としてパッケージング</li>
       </ul>
@@ -295,10 +300,10 @@ a { color: #2563eb; text-decoration: none; }
 <table>
   <tr><th>成果物</th><th>概要</th><th>URL</th></tr>
   <tr><td>Atelier Kyo Manager</td><td>BUYMA転売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
-  <tr><td>LINE予約システム</td><td>LINE Bot + Stripe決済 + Cloudflare Workersで構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
-  <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・OAuth1永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
-  <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格RAG検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + ChromaDB）・ベクトル+字句のハイブリッド検索・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（Recall@5 0.026→0.744）</td><td>非公開</td></tr>
-  <tr><td>Zenn自動投稿パイプライン</td><td>GitHub Actions（discover.yml / publish.yml）でトピック自動発掘 → 記事公開を連鎖自動化（公開リポジトリ・稼働中）</td><td><a href="https://github.com/fukukei23/zenn">GitHub</a></td></tr>
+  <tr><td>LINE予約システム</td><td>LINE Bot + <a class="gl" href="#gl-stripe">Stripe</a>決済 + <a class="gl" href="#gl-cf-workers">Cloudflare Workers</a>で構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
+  <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・<a class="gl" href="#gl-oauth">OAuth1</a>永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
+  <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開</td></tr>
+  <tr><td>Zenn自動投稿パイプライン</td><td><a class="gl" href="#gl-gha">GitHub Actions</a>（discover.yml / publish.yml）でトピック自動発掘 → 記事公開を連鎖自動化（公開リポジトリ・稼働中）</td><td><a href="https://github.com/fukukei23/zenn">GitHub</a></td></tr>
   <tr><td>Claude Code Guide</td><td>Claude Code CLIの基礎から応用までを完全解説するHTMLガイド（12章・Mermaid図7箇所・モバイル対応）</td><td><a href="https://fukukei23.github.io/claude-code-guide/">GitHub Pages</a></td></tr>
   <tr><td>OpenClaw Stack Guide</td><td>AIエージェント構築・運用の完全ガイドサイト（11章・モバイル最適化）</td><td><a href="https://fukukei23.github.io/openclaw-stack-guide/">GitHub Pages</a></td></tr>
   <tr><td>Loop Engineering Guide</td><td>自律開発ループの設計・運用ガイド（CronCreate・自己修復ループ）</td><td><a href="https://fukukei23.github.io/loop-engineering-guide/operation.html">GitHub Pages</a></td></tr>
@@ -326,17 +331,52 @@ a { color: #2563eb; text-decoration: none; }
   <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング・コスト最適化</td><td>★★★</td><td>NexusCore 12エージェント設計・5,000+テスト / ルーティング3層$180/月</td></tr>
   <tr><td>RAG</td><td>チャンキング / ベクトルDB（ChromaDB） / ハイブリッド検索（RRF） / 精度評価（Recall・MRR）</td><td>★★☆</td><td>ssot-search v2: 4,000+文書・30分毎差分更新・Recall@5 0.744（旧検索0.026から改善）</td></tr>
   <tr><td>LLM活用</td><td>GLM / MiniMax / Claude の3層ルーティング設計・運用</td><td>★★★</td><td>3層実運用・27億トークン/月・約67%コスト削減</td></tr>
-  <tr><td>インフラ</td><td>VPS + Docker + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番・2026年2月より連続稼働・2台体制（拡張中）</td></tr>
+  <tr><td>インフラ</td><td>VPS + <a class="gl" href="#gl-docker">Docker</a> + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番・2026年2月より連続稼働・2台体制（拡張中）</td></tr>
   <tr><td>AI駆動実装</td><td>Python / FastAPI / Docker / GitHub Actions をAI指示で構築・運用（設計・指示・動作確認・本番運用を担当）</td><td>★★☆</td><td>アプリ約15万行を設計〜本番運用（拡張中）</td></tr>
   <tr><td>テスト</td><td>pytest / ミューテーションテスト / カバレッジ80%+ / セキュリティスキャン</td><td>★★☆</td><td>テスト8,000+ / NexusCore約85%カバレッジ（拡張中）</td></tr>
 </table>
+
+<h2 id="glossary">用語集</h2>
+<div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します（クリック/tapで該当説明へ。印刷PDFでもリンクは機能します）</div>
+<dl>
+<dt id="gl-llm-routing">LLMルーティング</dt><dd>タスクの内容に応じて、どのLLM（AIモデル）に処理させるかを振り分ける（ルーティング＝経路選択する）仕組み。品質とコストのバランスを取るのが目的。</dd>
+<dt id="gl-claude-code">Claude Code</dt><dd>Anthropic社のAIコーディング支援ツール（CLI）。ターミナルから指示すると、コードの生成・修正・テストまで一連の作業を行う。本ポートフォリオの開発の中心。</dd>
+<dt id="gl-hooks">Hooks</dt><dd>Claude Codeの作業の前後に自動で走る検査・処理のこと。「危険なコマンドは遮断」「操作履歴を記録」等を、人の意志ではなく機械的に強制できる。</dd>
+<dt id="gl-skills">Skills</dt><dd>よく使う作業手順（TDD・体系的デバッグ・コードレビュー等）を文書化してClaude Codeから呼び出せるようにしたもの。呼び出されたAIはその手順に従って作業する。</dd>
+<dt id="gl-croncreate">CronCreate</dt><dd>Claude Code内で定期実行の予約（cron）を登録する機能。「毎朝自動で品質チェック」等の無人ループの起点。</dd>
+<dt id="gl-models">GLM / MiniMax / Sonnet</dt><dd>私が3層で使い分けているLLM（AIモデル）の3種。GLM（Z.ai製・日常用）／ MiniMax（大量処理用）／ Claude Sonnet（高性能・重要作業用）。</dd>
+<dt id="gl-mcp">MCP</dt><dd>Model Context Protocolの略。AIに外部ツール（検索・GitHub・データベース等）を繋ぐための共通接続規格。USBのような「差せば繋がる」仕組みでAIの能力を拡張する。</dd>
+<dt id="gl-subagent">Subagent</dt><dd>親AIが独自に持てる「子AI作業員」。別の指示・視点を与えて並行作業させ、結果だけを受け取る。1回の依頼で複数の調査・レビューを同時に進められる。</dd>
+<dt id="gl-wsl2">WSL2</dt><dd>Windows上でLinux（Ubuntu）を動かす仕組み。WindowsアプリとLinuxの開発道具を同じPCで併用できる。</dd>
+<dt id="gl-tailscale">Tailscale VPN</dt><dd>遠隔地の機器同士を仮想の私設網（VPN）で繋ぐサービス。スマホから自宅PCへ、認証済みの経路でのみ安全に接続できる。</dd>
+<dt id="gl-tmux">tmux</dt><dd>1つの端末画面に複数の作業場を作れるツール。通信が切れても作業状態が保たれ、再接続して続きから再開できる。</dd>
+<dt id="gl-flask">Flask</dt><dd>PythonでWebアプリや管理画面を軽く作るためのフレームワーク（骨組み部品のセット）。必要最小限の「軽量」設計が特徴。</dd>
+<dt id="gl-celery">Celery</dt><dd>Pythonのライブラリ。時間のかかる処理や定期実行を裏で非同期に回すための仕組み。処理を「タスク」として待ち行列に入れて順番に実行する。本文の事故はこのタスク登録が漏れていた事例。</dd>
+<dt id="gl-redis">Redis</dt><dd>超高速なデータ保存システム（インメモリDB）。主に一時データの保管や、同じ処理が重複して走るのを防ぐロック等に使う。</dd>
+<dt id="gl-cicd">CI</dt><dd>Continuous Integration（継続的インテグレーション）の略。コードを変更するたびに自動でテストとチェックを回し、壊れていないかを常に確認する仕組み。「CIが緑」＝全自動チェックに合格している状態。</dd>
+<dt id="gl-llm">LLM</dt><dd>Large Language Model（大規模言語モデル）の略。ChatGPTのような、文章を理解・生成するAIの頭脳部分。</dd>
+<dt id="gl-mutation">ミューテーションテスト</dt><dd>テスト自身の品質を測る試験。コードをわざと壊して「テストが失敗するか」を確認し、壊しても気づかない箇所＝テストの盲点を探す。</dd>
+<dt id="gl-fastapi">FastAPI</dt><dd>PythonでWeb API（他のプログラムから呼び出せる機能）を作るためのフレームワーク。処理を待たせない高速設計で、APIの説明書（OpenAPI文書）を自動生成する。</dd>
+<dt id="gl-vps">VPS</dt><dd>Virtual Private Server（仮想専用サーバー）の略。レンタルしたサーバーを自分のコンピュータとして自由に使えるサービス。月額固定で24時間稼働させられる。</dd>
+<dt id="gl-heartbeat">Heartbeat</dt><dd>「生きている」ことを定期的に送り続ける信号。一定時間来なくなったら異常と検知できる、死活監視の基本手法。</dd>
+<dt id="gl-jasrac">JASRAC / NexTone</dt><dd>音楽の著作権を一括管理する国内の団体（2大著作権管理事業者）。配信で楽曲を使った際の使用報告先。</dd>
+<dt id="gl-stripe">Stripe</dt><dd>Webサービスに決済（クレジットカード払い等）機能を組み込むための外部サービス。世界標準的に使われる。</dd>
+<dt id="gl-cf-workers">Cloudflare Workers</dt><dd>世界中に分散したサーバー上で小さなプログラムを動かす仕組み（Cloudflare社のサービス）。使った分だけの課金なので、アクセスが少ないサービスなら実質無料で運用できる。</dd>
+<dt id="gl-oauth">OAuth1</dt><dd>他のサービスの機能を、IDやパスワードを教えずに安全に使わせるための認可規格（OAuthの第1版）。「○○でログイン」ボタンの裏側で動く仕組みの系譜。</dd>
+<dt id="gl-rag">RAG</dt><dd>Retrieval-Augmented Generation（検索拡張生成）の略。AIに答えさせる前に自分の文書から関連箇所を検索して渡し、その内容に基づいて答えさせる仕組み。社内文書のQA等で使われる。</dd>
+<dt id="gl-chromadb">ChromaDB</dt><dd>ベクトルDB（文書を「意味の近さ」で検索できるようにするデータベース）の一種。RAG検索の保管庫として使う。</dd>
+<dt id="gl-hybrid">ハイブリッド検索</dt><dd>「意味の近さ」（ベクトル検索）と「キーワード一致」（字句検索）の両方を使う検索方式。どちらか単独よりも取りこぼしが少ない。</dd>
+<dt id="gl-recall">Recall@5</dt><dd>検索精度の指標の一つ。「検索結果の上位5件の中に正解文書が入っていた割合」。0.744なら10問のうち約7.4問で上位5件内に正解があったことになる。</dd>
+<dt id="gl-gha">GitHub Actions</dt><dd>GitHubが提供する自動化作業の仕組み。「コードをpushしたら自動テスト」「毎朝自動で記事を公開」等を定義して回せる。CI/CDの具体的な実装先の一つ。</dd>
+<dt id="gl-docker">Docker</dt><dd>プログラムとその実行環境一式を「コンテナ」という箱に梱包して、どのPCでも同じように動かす技術。「私の環境では動くのに」という問題を防ぐ。</dd>
+</dl>
 
 <div class="footer">
   GitHub: <a href="https://github.com/fukukei23">github.com/fukukei23</a>
   &nbsp;|&nbsp;
   Zenn: <a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a>
   &nbsp;|&nbsp;
-  最終更新: 2026-07-21
+  最終更新: 2026-08-27
 </div>
 
 </body>
