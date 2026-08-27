@@ -74,9 +74,9 @@ a { color: #2563eb; text-decoration: none; }
 a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color: #2563eb; text-underline-offset: 3px; }
 #glossary { page-break-before: always; }
 .gl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
-#glossary .g { border: 1px solid #e5e7eb; border-radius: 6px; padding: 6px 8px; page-break-inside: avoid; background: #f8fafc; }
-#glossary dt { font-weight: 700; color: #1e40af; font-size: 12px; }
-#glossary dd { margin: 2px 0 0 0; font-size: 11px; color: #374151; line-height: 1.55; }
+.gl-grid .g { border: 1px solid #e5e7eb; border-left: 3px solid #2563eb; border-radius: 6px; padding: 8px 10px; page-break-inside: avoid; background: #fff; }
+.gl-grid dt { display: inline-block; background: #dbeafe; color: #1e40af; border-radius: 3px; padding: 1px 8px; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+.gl-grid dd { margin: 0; font-size: 11px; color: #374151; line-height: 1.6; }
 @media (max-width: 640px) { .gl-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
