@@ -73,8 +73,11 @@ a { color: #2563eb; text-decoration: none; }
 /* 用語リンク（本文→末尾用語集へのアンカー・印刷PDFでも内部リンク保持） */
 a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color: #2563eb; text-underline-offset: 3px; }
 #glossary { page-break-before: always; }
-#glossary dt { font-weight: 700; color: #1e40af; margin-top: 10px; }
-#glossary dd { margin: 2px 0 0 0; font-size: 12px; color: #374151; line-height: 1.6; }
+.gl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+#glossary .g { border: 1px solid #e5e7eb; border-radius: 6px; padding: 6px 8px; page-break-inside: avoid; background: #f8fafc; }
+#glossary dt { font-weight: 700; color: #1e40af; font-size: 12px; }
+#glossary dd { margin: 2px 0 0 0; font-size: 11px; color: #374151; line-height: 1.55; }
+@media (max-width: 640px) { .gl-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -171,7 +174,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <div class="card">
       <h3>発見 — 何が起きていたか</h3>
       <ul>
-        <li>対象: BUYMA転売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>・37,000行超）</li>
+        <li>対象: BUYMA販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>・37,000行超）</li>
         <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、<b>Celeryワーカーのタスク登録が0件</b>。価格監視の定期実行が4時間ごとに<b>無音で失敗</b>し続けていた（タスク登録漏れ + タスク名不一致の二重の不整合）</li>
         <li>テストが緑の理由: テストは関数を直接呼ぶだけで、<b>「ワーカーがそのタスクを登録しているか」を検証していなかった</b></li>
         <li>1度目の包括レビューはこのバグを見逃し、翌日の<b>独立した2度目のレビュー</b>で発見</li>
@@ -299,7 +302,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <h2>その他の成果物（開発済み・本番未導入）</h2>
 <table>
   <tr><th>成果物</th><th>概要</th><th>URL</th></tr>
-  <tr><td>Atelier Kyo Manager</td><td>BUYMA転売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
+  <tr><td>Atelier Kyo Manager</td><td>BUYMA販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
   <tr><td>LINE予約システム</td><td>LINE Bot + <a class="gl" href="#gl-stripe">Stripe</a>決済 + <a class="gl" href="#gl-cf-workers">Cloudflare Workers</a>で構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
   <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・<a class="gl" href="#gl-oauth">OAuth1</a>永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
   <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開</td></tr>
@@ -337,38 +340,38 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </table>
 
 <h2 id="glossary">用語集（私のプロジェクトでの実装）</h2>
-<div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します。各用語について「私のプロジェクトではこう使っているか」を書いています。</div>
-<dl>
-<dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月27億トークンをGLM85% / MiniMax14% / Sonnet1%未満に振り分け・$180/月運用・約67%コスト削減。月次使用量を08-26集計した実測値はWSL CLI 19セッション・997 API呼出・コスト換算$94.97・cache_read 151Mトークン。</dd>
-<dt id="gl-claude-code">Claude Code</dt><dd>このポートフォリオ開発の作業の中核。カスタムHooks5種・自作Skills 35個（全117スキル中・30+プロジェクトを跨いで流用）・CronCreate自律ループ・4並列Subagent・SSOT連動（obsidian-ssot/CLAUDE.md）等、本ページ記載の成果は全てClaude Codeセッション内で構築・運用。</dd>
-<dt id="gl-hooks">Hooks</dt><dd>PreToolUse（19パターンの破壊コマンド遮断・`rm -rf *`・`git push --force`・`DROP/DELETE *`等を構造的にブロック）/ PostToolUse（操作履歴CSV・日次集計へ自動連結）/ SessionStart（前セッションのhandoffと今日のSSOT日記を冒頭表示）/ Stop（session終了時刻を日記に追記＋次回handoff生成）/ Notification（Discordへのエラー/ブロック通知）。hooks自体も本ページで公開リポジトリ参照。</dd>
-<dt id="gl-skills">Skills</dt><dd>自作35個＝`sentaku`（選択肢深掘り比較・推奨）/ `ssot-record`（SSOT振り分け自動化・全SSOT記録の起点）/ `multi-llm-review`（複数LLM並列レビュー・改訂案生成）/ `repo-review`（リポジトリ品質評価）/ `brainstorming` / `outward-reply` / `reflection` / `dev-cycle` 等。プロンプトと運用ルールをSKILL.mdに書き、Claude Codeが`Skill`ツールで呼び出す仕組み。</dd>
-<dt id="gl-croncreate">CronCreate</dt><dd>「Issue自動実装・定期lint・自動コミット等の無人開発ループ」を稼働中。具体例: ①`*/30`毎のobsidian-ssot自動同期（heartbeatがcommit/push）②`7 6 * * *` Daily Triage（Loop Engineering・Discord通知）③月次クリーンアップと6日毎cron再登録。他にstats集計・ssot-check・guide同期・repo-watch等のdurable cron計約9件（`00_SYSTEM/自動化.md` 正典）。</dd>
-<dt id="gl-models">GLM / MiniMax / Sonnet</dt><dd>このポートフォリオ自体の作業も3層で実行中（セッションがGLM動作中＝WSL CLI版・外部LLM呼び出し不要・不可）。各層の守備範囲: GLM（Z.ai製・日常タスクの大部分）/ MiniMax（大量処理・翻訳・要約のコスト最適化）/ Claude Sonnet（重要な設計判断・ユーザー許可時のみ）。</dd>
-<dt id="gl-mcp">MCP</dt><dd>10+サーバーを常時接続中: Brave Search（Web検索・gpt-researcher経由）/ GitHub（API操作）/ Playwright（ブラウザ自動操作・スクレイピング）/ Discord（運用通知・ペアリング）/ Context7（ライブラリ仕様書検索）/ Exa（セマンティック検索）等。連携は`.mcp.json`で宣言的に管理し、追加時はsettings.jsonと同期。</dd>
-<dt id="gl-subagent">Subagent</dt><dd>1依頼に対し最大4並列でディスパッチ。実例: コードレビュー・テスト・探索を同時実行（`repo-review`スキルが複数の観点エージェントを起動する設計）。Windows Terminal 4分割（WSL2）で4セッション同時管理、最大4×N画面運用。</dd>
-<dt id="gl-wsl2">WSL2</dt><dd>本ポートフォリオと関連プロジェクト（claude-config / obsidian-ssot / ssot-guide / fukukei23.github.io等）の主作業環境。Windows Terminalから4分割でWSLに入り、Claude Codeセッションを4タブ並列稼働させるのが日常運用。</dd>
-<dt id="gl-tailscale">Tailscale VPN</dt><dd>外出先（スマホ含む）から自宅PCのWSL2セッションへ入る経路。SSH+tmuxと組み合わせ、通信が切れても作業状態を維持したまま再接続して続きから再開できる「モバイルフルスタック環境」の基盤。</dd>
-<dt id="gl-tmux">tmux</dt><dd>Claude Codeセッションを裏で動かし続ける枠。スマホから再接続した瞬間に「直前の作業状態」へ復帰できる。フクロウ/よつばの2台のOpenClaw運用でも常時稼働中。</dd>
-<dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（BUYMA転売管理システム・41,939行・2,178テスト）のWebフレームワークとして採用。軽量設計で管理画面・スクレイパの制御画面・注文ステートマシンの操作UIを実装。本文カード記載のCelery事故はこのFlask+Celer+Redis構成で起きた機能停止級バグ。</dd>
-<dt id="gl-celery">Celery</dt><dd>atelier-kyo-managerの定期実行（価格監視・出品パイプライン）を駆動するワーカーとして稼働中。本ポートフォリオ本文に書いた「タスク登録漏れ+タスク名不一致の二重不整合」を発見し、Celeryワーカーに登録されたタスク名をassertする回帰テストを新設して再発防止。同手法は他定期バッチへも横展開中。</dd>
-<dt id="gl-redis">Redis</dt><dd>atelier-kyo-managerでスクレイパの重複実行ロック・Celeryのブローカー・セッションキャッシュに使用。SHOWROOM楽曲報告ツールの「自律復帰ロジック」（ポップアップ検知→画面リセット→再入力）でも状態保持に使っていた構成要素。</dd>
-<dt id="gl-cicd">CI</dt><dd>NexusCore: GitHub Actionsでpytest 5,000+を回す（CI passed 4,975・collect 5,203）。atelier-kyo-manager: pytest 2,178（collect・CI全緑だったがCeleryワーカータスク未登録をCIが検出できない＝CIの盲点を実例で示し、本文の「AI生成コードの罠」事例に直結）。本ポートフォリオ更新時はpre-commitのcheck-metricsが全ページ数値整合を自動検査。</dd>
-<dt id="gl-llm">LLM</dt><dd>本ポートフォリオ内LLM事例: ①atelier-kyo-managerの`gpt_integration.py`（出品文/翻訳文生成）/ ②`price_intelligence_agent.py`（価格推定）/ ③`profitability_agent.py`（利益計算+LLMコメント生成）/ ④NexusCoreの12エージェント群（ルーティング・コスト最適化・コード生成・テスト）/ ⑤ssot-search v2のクエリ拡張（精度評価の採点LLM）。</dd>
-<dt id="gl-mutation">ミューテーションテスト</dt><dd>NexusCoreの2層品質ゲート（静的解析 + ミューテーションテスト）として実装。`src/nexuscore/agents/mutation_tester/`配下が本体で、テストが「壊れた時にちゃんと失敗するか」を実測。atelier-kyo-managerの`tests/test_sourcing_profitability_coverage.py`がcoverage 100%でも本番経路未動作だった事例を受け、coverage率だけでなくミューテーションも併用する方針に転換中。</dd>
-<dt id="gl-fastapi">FastAPI</dt><dd>NexusCoreのAPIサーバとして採用（Python 3.12 / FastAPI / Gradio / pytest / GitHub Actions / Apache 2.0）。OpenAPI仕様書を自動生成し、`app/routes/`配下にRESTエンドポイントを実装。テスト5,000+ケースで全自動CI。</dd>
-<dt id="gl-vps">VPS</dt><dd>OpenClaw「フクロウ」本体の稼働基盤（VPS + Docker + Caddy + UFW）。本番運用は2026-02-26開始・本ポートフォリオ記載時点で約6ヶ月連続稼働（数値マスター.md基準）。ローカルPC側は「よつば」（開発・実験用）として別運用。</dd>
-<dt id="gl-heartbeat">Heartbeat</dt><dd>OpenClawで3層構成: 1分（緊急監視）/ 5分（設定検知）/ 30分（会話スキャン）。「フクロウ」VPSがDiscord経由で「よつば」ローカルPCを監視する死活監視の仕組みで、本ポートフォリオ「止めずに保つ運用」の技術的中核。</dd>
-<dt id="gl-jasrac">JASRAC / NexTone</dt><dd>SHOWROOM楽曲報告自動入力ツールの受託案件で対象とした2大著作権管理事業者。楽曲コードの頭文字からJASRAC/NexTone欄を自動振り分け・50件上限で自動停止・空行自動削除のフェイルセーフを実装。ココナラ経由で受注・納品済み・顧客満足（2025年12月）。</dd>
-<dt id="gl-stripe">Stripe</dt><dd>reserve-optimizer（LINE予約システム）の決済基盤として組み込み。LINE Bot → Stripe Checkout → 予約確定のフローをCloudflare Workers経由で接続し、月額保守サービス（ココナラ出品）の決済にも拡張予定。</dd>
-<dt id="gl-cf-workers">Cloudflare Workers</dt><dd>reserve-optimizerのリクエスト処理層として採用。アクセスが少ないサービスなら実質無料で運用できる特性を生かし、LINE BotからのWebhook受信 + Stripe API呼び出し + DB書込みをWorkers上で実行する構成。</dd>
-<dt id="gl-oauth">OAuth1</dt><dd>X（旧Twitter）自動投稿パイプラインで永続化層として使用（OAuth1.0a + Twitter API v1.1・署名キー暗号化保存）。信頼度自動承認ロジックと組み合わせ、72h SLAでX投稿を無人運用する設計・非公開リポジトリで開発中。</dd>
-<dt id="gl-rag">RAG</dt><dd>ssot-search v2として実装（数値マスター.md正典）。Phase 0-5完走・4,021文書 / 24,010チャンク / ruri-v3埋め込み + ChromaDB保管 / 30分毎の差分インデックス更新 / 外部LLM生成テストセット39問による3条件精度評価（Recall@5 0.026→0.744）。</dd>
-<dt id="gl-chromadb">ChromaDB</dt><dd>ssot-search v2のベクトル保管庫として採用。`update_rag_index.sh`が30分毎にobsidian-ssotの差分をスキャンしてChromaDBに書き込む設計。日本語埋め込みは cl-nagoya/ruri-v3-130m を使用（JMTEB比較で選定）。</dd>
-<dt id="gl-hybrid">ハイブリッド検索</dt><dd>ssot-search v2でベクトル検索（意味の近さ）と字句検索（キーワード一致）をRRF（Reciprocal Rank Fusion）で統合。単独よりも取りこぼしが少なくなることを実測で確認。設計経緯は`01_DECISIONS/ssot-search-v2/`配下のPhase記録に残す。</dd>
-<dt id="gl-recall">Recall@5</dt><dd>ssot-search v2の精度指標。v1（grep+BM25相当）でRecall@5=0.026・v2（RAG+ハイブリッド）で0.744に改善。テストセットは外部LLM（MiniMax M3）が自動生成・採点基準は事前固定・ベンチ詳細は`01_DECISIONS/ssot-search-v2/2026-08-17_Phase3+4精度評価ベンチ完了-3条件比較とRRF統合MRR低下の正直な記録.md`が正典。</dd>
-<dt id="gl-gha">GitHub Actions</dt><dd>①NexusCore CI（pytest 5,000+・CI passed 4,975）/ ②atelier-kyo-manager CI（pytest 2,178）/ ③fukukei23.github.io pre-commit（check-metricsが全ページ数値整合を自動検査）/ ④Zenn自動投稿パイプライン（discover.yml / publish.ymlでトピック自動発掘→記事公開を連鎖自動化・稼働中）。</dd>
-<dt id="gl-docker">Docker</dt><dd>OpenClaw「フクロウ」をVPS上で隔離稼働させるコンテナ基盤として採用。`docker-compose.yml`でCaddy + Discord Bot + 各専門エージェントを束ね、`「私の環境では動くのに」問題」を構造的に排除。</dd>
+<div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します。各用語の「私の実装」を1-2行で示します。</div>
+<dl class="gl-grid">
+<div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月27億トークンを3層に振り分け・$180/月・約67%コスト削減。</dd></div>
+<div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
+<div class="g"><dt id="gl-hooks">Hooks</dt><dd>5種稼働: 破壊コマンド遮断（19パターン）/ 操作履歴CSV / セッション開始時handoff表示 / 終了時日記追記 / Discord通知。</dd></div>
+<div class="g"><dt id="gl-skills">Skills</dt><dd>自作35個（sentaku / ssot-record / multi-llm-review等）。作業手順をSKILL.md化して再利用。</dd></div>
+<div class="g"><dt id="gl-croncreate">CronCreate</dt><dd>無人ループ稼働中: 30分毎自動同期・毎朝Daily Triage・stats集計等、durable cron約9件。</dd></div>
+<div class="g"><dt id="gl-models">GLM / MiniMax / Sonnet</dt><dd>GLM=日常85% / MiniMax=大量処理14% / Sonnet=重要作業1%未満の3層使い分け。</dd></div>
+<div class="g"><dt id="gl-mcp">MCP</dt><dd>10+サーバー常時接続（Brave Search / GitHub / Playwright / Discord / Context7 / Exa等）。</dd></div>
+<div class="g"><dt id="gl-subagent">Subagent</dt><dd>最大4並列でレビュー・テスト・探索を同時実行。Terminal 4分割で4セッション並列管理。</dd></div>
+<div class="g"><dt id="gl-wsl2">WSL2</dt><dd>主作業環境。Windows Terminal 4分割でClaude Codeを4タブ並列稼働。</dd></div>
+<div class="g"><dt id="gl-tailscale">Tailscale VPN</dt><dd>スマホから自宅PCのWSL2へ安全接続。モバイル開発環境の基盤。</dd></div>
+<div class="g"><dt id="gl-tmux">tmux</dt><dd>セッションを裏で維持・再接続で作業状態に復帰。OpenClaw 2台運用でも常時稼働。</dd></div>
+<div class="g"><dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（BUYMA販売管理・41,939行・2,178テスト）のWebフレームワーク。</dd></div>
+<div class="g"><dt id="gl-celery">Celery</dt><dd>同システムの定期実行ワーカー。タスク未登録事故を発見し回帰テスト新設（本文カード参照）。</dd></div>
+<div class="g"><dt id="gl-redis">Redis</dt><dd>同システムの重複実行ロック・Celeryブローカー・キャッシュ。</dd></div>
+<div class="g"><dt id="gl-cicd">CI</dt><dd>NexusCore 5,000+ / atelier 2,178テストをGitHub Actionsで自動実行。本ページはpre-commitが数値整合を自動検査。</dd></div>
+<div class="g"><dt id="gl-llm">LLM</dt><dd>出品文生成・価格推定・利益計算コメント等に実装（atelierのagents群・NexusCore 12エージェント）。</dd></div>
+<div class="g"><dt id="gl-mutation">ミューテーションテスト</dt><dd>NexusCoreの品質ゲート層。壊してもテストが失敗しない盲点を検出。</dd></div>
+<div class="g"><dt id="gl-fastapi">FastAPI</dt><dd>NexusCoreのAPI基盤。OpenAPI文書自動生成・5,000+テスト。</dd></div>
+<div class="g"><dt id="gl-vps">VPS</dt><dd>OpenClaw「フクロウ」の基盤（Docker + Caddy + UFW）。2026年2月から連続稼働。</dd></div>
+<div class="g"><dt id="gl-heartbeat">Heartbeat</dt><dd>OpenClawの3層死活監視（1分/5分/30分）。「止めずに保つ」運用の中核。</dd></div>
+<div class="g"><dt id="gl-jasrac">JASRAC / NexTone</dt><dd>SHOWROOM楽曲報告ツールの自動振り分け先。頭文字判別・50件上限フェイルセーフ（受託納品済み）。</dd></div>
+<div class="g"><dt id="gl-stripe">Stripe</dt><dd>reserve-optimizerの決済基盤。LINE Bot → Stripe Checkout → 予約確定。</dd></div>
+<div class="g"><dt id="gl-cf-workers">Cloudflare Workers</dt><dd>同システムのWebhook受信・Stripe呼出・DB書込み層。</dd></div>
+<div class="g"><dt id="gl-oauth">OAuth1</dt><dd>X自動投稿パイプラインの永続化層（署名キー暗号化・72h SLA・開発中）。</dd></div>
+<div class="g"><dt id="gl-rag">RAG</dt><dd>ssot-search v2として実装: 4,021文書 / 24,010チャンク / Recall@5 0.026→0.744。</dd></div>
+<div class="g"><dt id="gl-chromadb">ChromaDB</dt><dd>ssot-search v2のベクトル保管庫。30分毎の差分更新。</dd></div>
+<div class="g"><dt id="gl-hybrid">ハイブリッド検索</dt><dd>ベクトル+字句をRRF統合。単独より取りこぼしが少ないことを実測確認。</dd></div>
+<div class="g"><dt id="gl-recall">Recall@5</dt><dd>検索精度指標（上位5件に正解が入った割合）。外部LLM生成39問・採点基準事前固定。</dd></div>
+<div class="g"><dt id="gl-gha">GitHub Actions</dt><dd>4系統: NexusCore CI / atelier CI / 本repo pre-commit / Zenn自動投稿。</dd></div>
+<div class="g"><dt id="gl-docker">Docker</dt><dd>OpenClawをVPS上で隔離稼働。Caddy + Bot + エージェントをcomposeで束ねる。</dd></div>
 </dl>
 
 <div class="footer">
