@@ -12,7 +12,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-family: "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Sans", sans-serif;
   color: #1a1a2e;
   background: #fff;
   line-height: 1.5;
@@ -72,11 +72,11 @@ a { color: #2563eb; text-decoration: none; }
 .accent h2 { background: transparent; border-left: 3px solid #f59e0b; margin-top: 0; }
 /* 用語リンク（本文→末尾用語集へのアンカー・印刷PDFでも内部リンク保持） */
 a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color: #2563eb; text-underline-offset: 3px; }
-#glossary { page-break-before: always; }
-.gl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
-.gl-grid .g { border: 1px solid #e5e7eb; border-left: 3px solid #2563eb; border-radius: 6px; padding: 8px 10px; page-break-inside: avoid; background: #fff; }
-.gl-grid dt { display: inline-block; background: #dbeafe; color: #1e40af; border-radius: 3px; padding: 1px 8px; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
-.gl-grid dd { margin: 0; font-size: 11px; color: #374151; line-height: 1.6; }
+#glossary { page-break-before: auto; }
+.gl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px; }
+.gl-grid .g { border: 1px solid #e5e7eb; border-left: 3px solid #2563eb; border-radius: 6px; padding: 5px 8px; page-break-inside: avoid; background: #fff; }
+.gl-grid dt { display: inline-block; background: #dbeafe; color: #1e40af; border-radius: 3px; padding: 0 6px; font-weight: 700; font-size: 11px; margin-bottom: 2px; }
+.gl-grid dd { margin: 0; font-size: 10px; color: #374151; line-height: 1.5; }
 @media (max-width: 640px) { .gl-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -93,6 +93,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <p style="margin: 8px 0 10px; line-height: 1.7;">
   コードはAI（<a class="gl" href="#gl-claude-code">Claude Code</a>等）が生成し、自身は<b>要件の言語化・設計・検証・運用</b>に集中するAI駆動開発スタイルです。下記の数値はAI生成を含む出力規模であり（手書き行数ではありません）、品質は<b>複数LLM独立レビュー × 実測裁定 × 記録</b>のプロセスで担保しています。ベースは陸上自衛隊19年で培った<b>計画策定・30-40人のチーム指揮・文書作成</b>——「何を作るかを固め、形になったものを検証する」仕事をAI時代に組み直したものです。
 </p>
+<p style="margin: 0 0 10px; font-size: 12px;"><b>ご提供できること</b>: 業務自動化・AIアプリ開発の<b>要件整理から実装、24時間安定運用まで</b>の一貫対応（受託納品実績あり・下記参照）</p>
 
 <div class="stats">
   <div class="stat"><div class="num">約15万行</div><div class="label">アプリケーションコード（1年累積）</div></div>
@@ -103,7 +104,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   <div class="stat"><div class="num">20</div><div class="label">技術記事（公開済み）</div></div>
   <div class="stat"><div class="num">約6ヶ月</div><div class="label">24h本番運用</div></div>
 </div>
-<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08実測値（SSOT正典から転記・丸め表記）</div>
+<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08実測値（SSOT正典から転記・丸め表記）・専門用語は末尾の用語集（P.6）を参照</div>
 
 <div class="accent">
   <h2>武器: Claude Codeフルスタックカスタマイズで開発生産性を最大化</h2>
@@ -114,13 +115,13 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
         <li><b>5種の<a class="gl" href="#gl-hooks">Hooks</a></b>でライフサイクル制御: PreToolUse（19パターン破壊ガード）/ PostToolUse（CSV履歴）/ SessionStart（ハンドオフ表示）/ Stop（日記追記）/ Notification（Discord連携）</li>
         <li><b>カスタム<a class="gl" href="#gl-skills">Skills</a></b>: TDD / 体系的デバッグ / コードレビュー / プラン執行等の再利用可能ワークフローを定義</li>
         <li><b><a class="gl" href="#gl-croncreate">CronCreate</a>自律ループ</b>: Issue自動実装・定期lint・自動コミット等の無人開発を稼働中</li>
-        <li>LLMルーティング: 月27億トークンを<a class="gl" href="#gl-models">GLM/MiniMax/Sonnet</a>の3層に振り分け、自作プロキシで約67%コスト削減・$180/月で運用。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
+        <li>LLMルーティング: 月27億トークンを<a class="gl" href="#gl-models">GLM/MiniMax/Sonnet</a>の3層に振り分け、自作プロキシで約67%コスト削減・$180/月（約2.7万円）で運用（軽量作業は最安モデルに自動集約）。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
       </ul>
     </div>
     <div class="card">
       <h3>MCP &amp; Subagent — 外部ツール統合と並列実行</h3>
       <ul>
-        <li><b><a class="gl" href="#gl-mcp">MCP</a> 10+サーバー統合</b>: Brave Search / GitHub / Playwright / Discord / Context7 / Exa等をシームレスに連携</li>
+        <li><b><a class="gl" href="#gl-mcp">MCP</a> 10+サーバー統合</b>（異なるツール・サービスをつなぐ共通規格）: Brave Search / GitHub / Playwright / Discord / Context7 / Exa等をシームレスに連携</li>
         <li><b><a class="gl" href="#gl-subagent">Subagent</a>並列実行</b>: 独立タスクを4並列でディスパッチ — コードレビュー・テスト・探索を同時実行</li>
         <li><b>各AIの一次設定</b>（CLAUDE.md / Memory）は後述の <b>Obsidian SSOT</b> の必要部分を同期・反映</li>
         <li>Windows Terminal 4分割（<a class="gl" href="#gl-wsl2">WSL2</a>）で4セッション同時管理、最大4×N画面</li>
@@ -167,26 +168,24 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   </div>
 </div>
 
-<h2>AI生成コードの罠と品質担保プロセス — 実例による検出機構</h2>
+<h2>AI生成コードの品質を担保する多重検証プロセス — 実例による証明</h2>
 <div class="accent" style="border-color: #dc2626;">
-  <h2 style="border-left-color: #dc2626;">テスト全緑・CI全緑なのに、本番の定期処理が1件も動いていなかった</h2>
+  <h2 style="border-left-color: #dc2626;">AIの盲点を仕組みで検出する — 実運用で機能した3層の検出機構</h2>
   <div class="grid">
     <div class="card">
-      <h3>発見 — 何が起きていたか</h3>
+      <h3>なぜ仕組みが要るか — 実例</h3>
       <ul>
-        <li>対象: BUYMA販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>・37,000行超）</li>
-        <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、<b>Celeryワーカーのタスク登録が0件</b>。価格監視の定期実行が4時間ごとに<b>無音で失敗</b>し続けていた（タスク登録漏れ + タスク名不一致の二重の不整合）</li>
-        <li>テストが緑の理由: テストは関数を直接呼ぶだけで、<b>「ワーカーがそのタスクを登録しているか」を検証していなかった</b></li>
-        <li>1度目の包括レビューはこのバグを見逃し、翌日の<b>独立した2度目のレビュー</b>で発見</li>
-        <li>見つけたのはコード読解ではなく<b>「1度目で終わらず、自分に2度目の独立レビューを課す」運用ルール</b>——AIレビューを鵜呑みにせず重ねることで、機能停止級の欠陥を拾い上げた</li>
+        <li>対象: BUYMA販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>）</li>
+        <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、本番の定期処理が動いていない状態を検知。原因は「ワーカーがタスクを登録しているか」を<b>テストが検証していなかった</b>というAI生成コード特有の盲点</li>
+        <li>この盲点を捕まえたのはコード読解ではなく、<b>「1度目で終わらず、独立した2度目のレビューを課す」運用ルール</b></li>
       </ul>
     </div>
     <div class="card">
-      <h3>対策 — どう検出し、どう直したか</h3>
+      <h3>3層の検出機構 — どう防ぐか</h3>
       <ul>
-        <li><b>独立レビューを重ねる</b>: 異なるセッション/異なるLLMに独立レビューさせる。指摘は<b>検証コマンドに変換して実測結果だけで採否</b>（誤った指摘はgrep実測で参照0件を確認し却下）</li>
-        <li><b>修復</b>: ワーカーのタスク登録を修正し、<b>「定期実行の全タスク名がワーカーに登録済みか」をassertする回帰テストを新設</b>——同じ失敗が再び「緑」に隠れないようにした</li>
-        <li><b>記録</b>: 発見から修復までの判断過程をナレッジベース（判断記録1,300+件）に保存し、同じ失敗モードの再発防止に再利用</li>
+        <li><b>① 独立レビュー</b>: 異なるセッション/異なるLLMに独立レビューさせる——1つのAIの見落としを別の目で拾う</li>
+        <li><b>② 実測裁定</b>: 指摘は<b>検証コマンドに変換して実測結果だけで採否</b>——誤った指摘はgrep実測で参照0件を確認し却下</li>
+        <li><b>③ 記録と再利用</b>: 判断過程をナレッジベース（判断記録1,300+件）に保存——同じ失敗モードの再発防止に再利用。修復時は同じ穴が再び「緑」に隠れない<b>回帰テストを新設</b></li>
       </ul>
     </div>
   </div>
@@ -197,7 +196,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <span class="tag">回帰テスト新設</span>
     <span class="tag">判断記録</span>
   </div>
-  <div style="font-size: 12px; margin-top: 8px; opacity: 0.9;">💡 AIにコードを書かせる開発で最も危険なのは「検証が通ったように見える」こと。個別のバグよりも、<b>AIの出力を鵜呑みにしない検出機構</b>（独立レビュー × 実測裁定 × 記録）を開発プロセスに組み込むことを主眼にしています。</div>
+  <div style="font-size: 12px; margin-top: 8px; opacity: 0.9;">💡 AIにコードを書かせる開発で最も危険なのは「検証が通ったように見える」こと。個別のバグ潰しではなく、<b>AIの出力を鵜呑みにしない検出機構</b>をプロセスとして組み込むことが主眼です。このプロセスが、<b>P.4「受託実績」</b>での「バグ報告→<b>2.5時間で修正納品</b>」の速さと品質を支えています。</div>
 </div>
 
 <h2>柱1: NexusCore — AIエージェント開発フレームワーク</h2>
@@ -236,6 +235,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </div>
 
 <h2>柱2: OpenClaw — 24時間AIエージェント運用</h2>
+<div style="font-size: 12px; margin: 2px 0 8px;">何に使えるか: 常時稼働するAIサービスの<b>監視・運用体制の設計ノウハウ</b>（顧客案件の24時間稼働要件にも適用可能・運用インフラ構築と運用の実績）</div>
 <div class="grid">
   <div class="card">
     <h3>2台体制・2026年2月より連続稼働中（約6ヶ月）</h3>
@@ -250,7 +250,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <h3>59体専門エージェント + 3層Heartbeat</h3>
     <ul>
       <li>5カテゴリ59体: engineering / testing / specialized / design / marketing</li>
-      <li>3層Heartbeat: 1分（緊急監視）/ 5分（設定検知）/ 30分（会話スキャン）</li>
+      <li>3層Heartbeat（障害を自動検知する死活監視）: 1分（緊急監視）/ 5分（設定検知）/ 30分（会話スキャン）</li>
       <li>3モデル使い分け: GLM-5 / GLM-4.7 / MiniMax で月額数千円運用</li>
       <li>コスト管理ルール: 3千/1万円の閾値で承認フロー自動分岐</li>
     </ul>
@@ -305,12 +305,9 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   <tr><td>Atelier Kyo Manager</td><td>BUYMA販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
   <tr><td>LINE予約システム</td><td>LINE Bot + <a class="gl" href="#gl-stripe">Stripe</a>決済 + <a class="gl" href="#gl-cf-workers">Cloudflare Workers</a>で構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
   <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・<a class="gl" href="#gl-oauth">OAuth1</a>永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
-  <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開</td></tr>
+  <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開（詳細は面談で説明可能）</td></tr>
   <tr><td>Zenn自動投稿パイプライン</td><td><a class="gl" href="#gl-gha">GitHub Actions</a>（discover.yml / publish.yml）でトピック自動発掘 → 記事公開を連鎖自動化（公開リポジトリ・稼働中）</td><td><a href="https://github.com/fukukei23/zenn">GitHub</a></td></tr>
-  <tr><td>Claude Code Guide</td><td>Claude Code CLIの基礎から応用までを完全解説するHTMLガイド（12章・Mermaid図7箇所・モバイル対応）</td><td><a href="https://fukukei23.github.io/claude-code-guide/">GitHub Pages</a></td></tr>
-  <tr><td>OpenClaw Stack Guide</td><td>AIエージェント構築・運用の完全ガイドサイト（11章・モバイル最適化）</td><td><a href="https://fukukei23.github.io/openclaw-stack-guide/">GitHub Pages</a></td></tr>
-  <tr><td>Loop Engineering Guide</td><td>自律開発ループの設計・運用ガイド（CronCreate・自己修復ループ）</td><td><a href="https://fukukei23.github.io/loop-engineering-guide/operation.html">GitHub Pages</a></td></tr>
-  <tr><td>Claude Code Textbook</td><td>AI×Claude Code の実践教科書（インタラクティブ・モバイル対応）</td><td><a href="https://fukukei23.github.io/claude-code-textbook/">GitHub Pages</a></td></tr>
+  <tr><td>公開ガイドサイト4本</td><td><a href="https://fukukei23.github.io/claude-code-guide/">Claude Code Guide</a>（12章） / <a href="https://fukukei23.github.io/openclaw-stack-guide/">OpenClaw Stack Guide</a>（11章） / <a href="https://fukukei23.github.io/loop-engineering-guide/operation.html">Loop Engineering Guide</a>（自律開発ループ） / <a href="https://fukukei23.github.io/claude-code-textbook/">Claude Code Textbook</a>（全てGitHub Pages・モバイル対応）</td><td><a href="https://fukukei23.github.io/guides/">GitHub Pages</a></td></tr>
   <tr><td>Zenn技術記事</td><td>公開済み + 連載中（AIエージェント / Claude Code / MCP / LLM運用等）</td><td><a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a></td></tr>
   <tr><td>他プロジェクト</td><td>contextforge / orchestrix 等20+</td><td><a href="https://github.com/fukukei23">GitHub</a></td></tr>
   <tr><td>開発環境ガイド（50冊）</td><td>SSH / Tailscale / tmux / Docker等のクイックリファレンスガイド。スマホブラウザ最適化済み</td><td><a href="https://fukukei23.github.io/guides/">GitHub Pages</a></td></tr>
@@ -328,6 +325,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </table>
 
 <h2>スキルマップ</h2>
+<div style="font-size: 11px; color: #6b7280; margin: 0 0 4px;">★★★ = 実務で常用 / ★★☆ = 応用可（拡張中）</div>
 <table>
   <tr><th>カテゴリ</th><th>スキル</th><th>レベル</th><th>客観指標（根拠）</th></tr>
   <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td><td>判断記録1,300+件 / 自作スキル30+個 / 自律ループ稼働中 / SSOT 140+日運用</td></tr>
@@ -379,7 +377,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   &nbsp;|&nbsp;
   Zenn: <a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a>
   &nbsp;|&nbsp;
-  最終更新: 2026-08-27
+  最終更新: 2026-09-02
 </div>
 
 </body>
