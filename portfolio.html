@@ -96,15 +96,15 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <p style="margin: 0 0 10px; font-size: 12px;"><b>ご提供できること</b>: 業務自動化・AIアプリ開発の<b>要件整理から実装、24時間安定運用まで</b>の一貫対応（受託納品実績あり・下記参照）</p>
 
 <div class="stats">
-  <div class="stat"><div class="num">約15万行</div><div class="label">アプリケーションコード（1年累積）</div></div>
-  <div class="stat"><div class="num">約16万行</div><div class="label">テストコード（1年累積）</div></div>
+  <div class="stat"><div class="num">約15万行</div><div class="label">アプリケーションコード（直近1年累積・2025-08〜2026-08実測）</div></div>
+  <div class="stat"><div class="num">約16万行</div><div class="label">テストコード（直近1年累積・2025-08〜2026-08実測）</div></div>
   <div class="stat"><div class="num">8,000+</div><div class="label">テストケース</div></div>
   <div class="stat"><div class="num">10,000+</div><div class="label">総コミット（全リポジトリ）</div></div>
   <div class="stat"><div class="num">23</div><div class="label">GitHubリポジトリ（公開14+非公開9）</div></div>
   <div class="stat"><div class="num">20</div><div class="label">技術記事（公開済み）</div></div>
-  <div class="stat"><div class="num">約6ヶ月</div><div class="label">24h本番運用</div></div>
+  <div class="stat"><div class="num">約6ヶ月</div><div class="label">24h本番運用（OpenClaw運用・2026-02開始）</div></div>
 </div>
-<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08実測値（SSOT正典から転記・丸め表記）・専門用語は末尾の用語集（P.4-5）を参照</div>
+<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08実測値（SSOT正典から転記・丸め表記）・数値は活動量・継続の指標であり開発速度の指標ではありません・専門用語は末尾の用語集（P.4-5）を参照</div>
 
 <div class="accent">
   <h2>武器: Claude Codeフルスタックカスタマイズで開発生産性を最大化</h2>
@@ -143,11 +143,11 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
       <ul>
         <li><a class="gl" href="#gl-tailscale">Tailscale VPN</a> + mosh（Moshiアプリ）+ <a class="gl" href="#gl-tmux">tmux</a> でスマホから Claude Code CLI を操作（SSHは予備経路）</li>
         <li>外出先の隙間時間でもAI開発セッションを継続可能</li>
-        <li>知見をガイド15リポジトリ（50冊超）として GitHub Pages で公開（モバイル最適化）</li>
+        <li>知見をガイド16リポジトリ（60冊）として GitHub Pages で公開（モバイル最適化）</li>
       </ul>
     </div>
     <div class="card">
-      <h3>公開ガイド15リポジトリ（50冊超） — 実践知識の体系化</h3>
+      <h3>公開ガイド16リポジトリ（60冊） — 実践知識の体系化</h3>
       <ul>
         <li>Claude Code / Git / tmux / WSL2 / Tailscale / Python / Docker / MCP</li>
         <li>OpenClaw運用5冊 / トラブルシューティング / セキュリティ</li>
@@ -162,7 +162,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
       <li><b>プロジェクトの全ライフサイクルを一貫管理</b>: 要件→計画→実装→意思決定→成果→残課題→次アクション→handoff（引継ぎ）の循環を、セッションを跨いでも迷子なく回し続ける</li>
       <li><b>知識の資産化（複利）</b>: 積み上げた判断・スキル・運用ルールが再利用可能な資産として結晶化 — 新プロジェクトをゼロから考えず速く立ち上げる</li>
       <li><b>規模の実績</b>: 判断記録（AIエージェントへの意思決定ログ） <b>1,300+件</b>（30+プロジェクト分・2026-08実測）/ handoff（作業引き継ぎ記録） <b>490+件</b> / 自作スキル <b>30+個</b>（導入含め全117スキル運用） / 日次運用 <b>140+日分</b></li>
-      <li><b>公開ガイド15リポジトリは本SSOTから派生生成</b>（convert.py経由）— 非公開の知識基盤が実運用されていることの公開証拠</li>
+      <li><b>公開ガイド16リポジトリは本SSOTから派生生成</b>（convert.py経由）— 非公開の知識基盤が実運用されていることの公開証拠</li>
       <li>副次: pre-commit / detect-secrets / 破壊コマンドガード等の安全弁で運用品質を担保</li>
     </ul>
   </div>
@@ -235,7 +235,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </div>
 
 <h2>柱2: OpenClaw — 24時間AIエージェント運用</h2>
-<div style="font-size: 12px; margin: 2px 0 8px;">何に使えるか: 常時稼働するAIサービスの<b>監視・運用体制の設計ノウハウ</b>（顧客案件の24時間稼働要件にも適用可能・運用インフラ構築と運用の実績）</div>
+<div style="font-size: 12px; margin: 2px 0 8px;">何に使えるか: 常時稼働するAIサービスの<b>監視・運用体制の設計ノウハウ</b>（顧客案件の24時間稼働要件にも適用可能・運用インフラ構築と運用の実績）。OpenClawは既存OSSのエージェントフレームワークで、本実績は同OSS上に構築した運用レイヤ（59体のエージェント設定・3層Heartbeat監視・Discord連携・VPS/Docker構成）の設計と連続稼働</div>
 <div class="grid">
   <div class="card">
     <h3>2台体制・2026年2月より連続稼働中（約6ヶ月）</h3>
@@ -250,7 +250,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <h3>59体専門エージェント + 3層Heartbeat</h3>
     <ul>
       <li>5カテゴリ59体: engineering / testing / specialized / design / marketing</li>
-      <li>3層Heartbeat（障害を自動検知する死活監視）: 1分（緊急監視）/ 5分（設定検知）/ 30分（会話スキャン）</li>
+      <li>3層Heartbeat（障害を自動検知する死活監視）: 1分（プロセス死活）/ 5分（設定・依存サービス）/ 30分（対話・タスク監視）</li>
       <li>3モデル使い分け: GLM-5 / GLM-4.7 / MiniMax で月額数千円運用</li>
       <li>コスト管理ルール: 3千/1万円の閾値で承認フロー自動分岐</li>
     </ul>
@@ -310,7 +310,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   <tr><td>公開ガイドサイト4本</td><td><a href="https://fukukei23.github.io/claude-code-guide/">Claude Code Guide</a>（12章） / <a href="https://fukukei23.github.io/openclaw-stack-guide/">OpenClaw Stack Guide</a>（11章） / <a href="https://fukukei23.github.io/loop-engineering-guide/operation.html">Loop Engineering Guide</a>（自律開発ループ） / <a href="https://fukukei23.github.io/claude-code-textbook/">Claude Code Textbook</a>（全てGitHub Pages・モバイル対応）</td><td><a href="https://fukukei23.github.io/guides/">GitHub Pages</a></td></tr>
   <tr><td>Zenn技術記事</td><td>公開済み + 連載中（AIエージェント / Claude Code / MCP / LLM運用等）</td><td><a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a></td></tr>
   <tr><td>他プロジェクト</td><td>contextforge / orchestrix 等20+</td><td><a href="https://github.com/fukukei23">GitHub</a></td></tr>
-  <tr><td>開発環境ガイド（50冊）</td><td>SSH / Tailscale / tmux / Docker等のクイックリファレンスガイド。スマホブラウザ最適化済み</td><td><a href="https://fukukei23.github.io/guides/">GitHub Pages</a></td></tr>
+  <tr><td>開発環境ガイド（guidesハブ・50冊）</td><td>SSH / Tailscale / tmux / Docker等のクイックリファレンスガイド。スマホブラウザ最適化済み</td><td><a href="https://fukukei23.github.io/guides/">GitHub Pages</a></td></tr>
 </table>
 
 <h2>資格・認定</h2>
@@ -343,7 +343,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月27億トークンを3層に振り分け・$180/月・約67%コスト削減。</dd></div>
 <div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
 <div class="g"><dt id="gl-hooks">Hooks</dt><dd>5種稼働: 破壊コマンド遮断（19パターン）/ 操作履歴CSV / セッション開始時handoff表示 / 終了時日記追記 / Discord通知。</dd></div>
-<div class="g"><dt id="gl-skills">Skills</dt><dd>自作35個（sentaku / ssot-record / multi-llm-review等）。作業手順をSKILL.md化して再利用。</dd></div>
+<div class="g"><dt id="gl-skills">Skills</dt><dd>自作スキル30+個（導入含め全117スキル運用・sentaku / ssot-record / multi-llm-review等）。作業手順をSKILL.md化して再利用。</dd></div>
 <div class="g"><dt id="gl-croncreate">CronCreate</dt><dd>無人ループ稼働中: 30分毎自動同期・毎朝Daily Triage・stats集計等、durable cron約9件。</dd></div>
 <div class="g"><dt id="gl-models">GLM / MiniMax / Sonnet</dt><dd>GLM=日常85% / MiniMax=大量処理14% / Sonnet=重要作業1%未満の3層使い分け。</dd></div>
 <div class="g"><dt id="gl-mcp">MCP</dt><dd>10+サーバー常時接続（Brave Search / GitHub / Playwright / Discord / Context7 / Exa等）。</dd></div>
@@ -364,7 +364,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <div class="g"><dt id="gl-stripe">Stripe</dt><dd>reserve-optimizerの決済基盤。LINE Bot → Stripe Checkout → 予約確定。</dd></div>
 <div class="g"><dt id="gl-cf-workers">Cloudflare Workers</dt><dd>同システムのWebhook受信・Stripe呼出・DB書込み層。</dd></div>
 <div class="g"><dt id="gl-oauth">OAuth1</dt><dd>X自動投稿パイプラインの永続化層（署名キー暗号化・72h SLA・開発中）。</dd></div>
-<div class="g"><dt id="gl-rag">RAG</dt><dd>ssot-search v2として実装: 4,021文書 / 24,010チャンク / Recall@5 0.026→0.744。</dd></div>
+<div class="g"><dt id="gl-rag">RAG</dt><dd>ssot-search v2として実装: 4,000+文書 / 24,000チャンク / Recall@5 0.026→0.744。</dd></div>
 <div class="g"><dt id="gl-chromadb">ChromaDB</dt><dd>ssot-search v2のベクトル保管庫。30分毎の差分更新。</dd></div>
 <div class="g"><dt id="gl-hybrid">ハイブリッド検索</dt><dd>ベクトル+字句をRRF統合。単独より取りこぼしが少ないことを実測確認。</dd></div>
 <div class="g"><dt id="gl-recall">Recall@5</dt><dd>検索精度指標（上位5件に正解が入った割合）。外部LLM生成39問・採点基準事前固定。</dd></div>
@@ -377,7 +377,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   &nbsp;|&nbsp;
   Zenn: <a href="https://zenn.dev/fukukei23">zenn.dev/fukukei23</a>
   &nbsp;|&nbsp;
-  最終更新: 2026-09-02
+  最終更新: 2026-10-07
 </div>
 
 </body>
