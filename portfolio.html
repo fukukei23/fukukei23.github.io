@@ -115,7 +115,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
         <li><b>5種の<a class="gl" href="#gl-hooks">Hooks</a></b>でライフサイクル制御: PreToolUse（19パターン破壊ガード）/ PostToolUse（CSV履歴）/ SessionStart（ハンドオフ表示）/ Stop（日記追記）/ Notification（Discord連携）</li>
         <li><b>カスタム<a class="gl" href="#gl-skills">Skills</a></b>: TDD / 体系的デバッグ / コードレビュー / プラン執行等の再利用可能ワークフローを定義</li>
         <li><b><a class="gl" href="#gl-croncreate">CronCreate</a>自律ループ</b>: Issue自動実装・定期lint・自動コミット等の無人開発を稼働中</li>
-        <li>LLMルーティング: 月27億トークンを<a class="gl" href="#gl-models">GLM/MiniMax/Sonnet</a>の3層に振り分け、自作プロキシで約67%コスト削減・$180/月（約2.7万円）で運用（軽量作業は最安モデルに自動集約）。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
+        <li>LLMルーティング: 月96億トークンを<a class="gl" href="#gl-models">GLM/MiniMax</a>の2層に振り分け（Claude不使用）、自作プロキシで約67%コスト削減・$180/月（約2.7万円）で運用（軽量作業は最安モデルに自動集約）。同種の「タスク種別×モデル×コスト」設計は<b>顧客案件のLLM導入にもそのまま横展開可能</b></li>
       </ul>
     </div>
     <div class="card">
@@ -175,7 +175,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <div class="card">
       <h3>なぜ仕組みが要るか — 実例</h3>
       <ul>
-        <li>対象: BUYMA販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>）</li>
+        <li>対象: フリマ販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>）</li>
         <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、本番の定期処理が動いていない状態を検知。原因は「ワーカーがタスクを登録しているか」を<b>テストが検証していなかった</b>というAI生成コード特有の盲点</li>
         <li>この盲点を捕まえたのはコード読解ではなく、<b>「1度目で終わらず、独立した2度目のレビューを課す」運用ルール</b></li>
       </ul>
@@ -302,7 +302,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <h2>その他の成果物（開発済み・本番未導入）</h2>
 <table>
   <tr><th>成果物</th><th>概要</th><th>URL</th></tr>
-  <tr><td>Atelier Kyo Manager</td><td>BUYMA販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
+  <tr><td>Atelier Kyo Manager</td><td>フリマ販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
   <tr><td>LINE予約システム</td><td>LINE Bot + <a class="gl" href="#gl-stripe">Stripe</a>決済 + <a class="gl" href="#gl-cf-workers">Cloudflare Workers</a>で構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
   <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・<a class="gl" href="#gl-oauth">OAuth1</a>永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
   <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開（詳細は面談で説明可能）</td></tr>
@@ -329,9 +329,9 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <table>
   <tr><th>カテゴリ</th><th>スキル</th><th>レベル</th><th>客観指標（根拠）</th></tr>
   <tr><td><b>Claude Code運用</b></td><td>Hooks（5種ライフサイクル自動化）・Skills（TDD/デバッグ/レビュー）・MCP（10+サーバー統合）・Subagent並列実行・Obsidian SSOT設計運用・CronCreate自律ループ</td><td><b>★★★</b></td><td>判断記録1,300+件 / 自作スキル30+個 / 自律ループ稼働中 / SSOT 140+日運用</td></tr>
-  <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング・コスト最適化</td><td>★★★</td><td>NexusCore 12エージェント設計・5,000+テスト / ルーティング3層$180/月</td></tr>
+  <tr><td>AIエージェント</td><td>マルチエージェント設計・LLMルーティング・コスト最適化</td><td>★★★</td><td>NexusCore 12エージェント設計・5,000+テスト / ルーティング2層$180/月</td></tr>
   <tr><td>RAG</td><td>チャンキング / ベクトルDB（ChromaDB） / ハイブリッド検索（RRF） / 精度評価（Recall・MRR）</td><td>★★☆</td><td>ssot-search v2: 4,000+文書・30分毎差分更新・Recall@5 0.744（旧検索0.026から改善）</td></tr>
-  <tr><td>LLM活用</td><td>GLM / MiniMax / Claude の3層ルーティング設計・運用</td><td>★★★</td><td>3層実運用・27億トークン/月・約67%コスト削減</td></tr>
+  <tr><td>LLM活用</td><td>GLM / MiniMax の2層ルーティング設計・運用</td><td>★★★</td><td>2層実運用・96億トークン/月・約67%コスト削減</td></tr>
   <tr><td>インフラ</td><td>VPS + <a class="gl" href="#gl-docker">Docker</a> + Caddy / Heartbeat + Cron / CI/CD（GitHub Actions）</td><td>★★☆</td><td>OpenClaw 24h本番・2026年2月より連続稼働・2台体制（拡張中）</td></tr>
   <tr><td>AI駆動実装</td><td>Python / FastAPI / Docker / GitHub Actions をAI指示で構築・運用（設計・指示・動作確認・本番運用を担当）</td><td>★★☆</td><td>アプリ約15万行を設計〜本番運用（拡張中）</td></tr>
   <tr><td>テスト</td><td>pytest / ミューテーションテスト / カバレッジ80%+ / セキュリティスキャン</td><td>★★☆</td><td>テスト8,000+ / NexusCore約85%カバレッジ（拡張中）</td></tr>
@@ -340,18 +340,18 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <h2 id="glossary">用語集（私のプロジェクトでの実装）</h2>
 <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します。各用語の「私の実装」を1-2行で示します。</div>
 <dl class="gl-grid">
-<div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月27億トークンを3層に振り分け・$180/月・約67%コスト削減。</dd></div>
+<div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月96億トークンを2層に振り分け・$180/月・約67%コスト削減。</dd></div>
 <div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
 <div class="g"><dt id="gl-hooks">Hooks</dt><dd>5種稼働: 破壊コマンド遮断（19パターン）/ 操作履歴CSV / セッション開始時handoff表示 / 終了時日記追記 / Discord通知。</dd></div>
 <div class="g"><dt id="gl-skills">Skills</dt><dd>自作スキル30+個（導入含め全117スキル運用・sentaku / ssot-record / multi-llm-review等）。作業手順をSKILL.md化して再利用。</dd></div>
 <div class="g"><dt id="gl-croncreate">CronCreate</dt><dd>無人ループ稼働中: 30分毎自動同期・毎朝Daily Triage・stats集計等、durable cron約9件。</dd></div>
-<div class="g"><dt id="gl-models">GLM / MiniMax / Sonnet</dt><dd>GLM=日常85% / MiniMax=大量処理14% / Sonnet=重要作業1%未満の3層使い分け。</dd></div>
+<div class="g"><dt id="gl-models">GLM / MiniMax</dt><dd>GLM=日常の主力（約82%）/ MiniMax=大量処理・フォールバック（約18%）の2層使い分け（2026-10実測・Claude不使用）。</dd></div>
 <div class="g"><dt id="gl-mcp">MCP</dt><dd>10+サーバー常時接続（Brave Search / GitHub / Playwright / Discord / Context7 / Exa等）。</dd></div>
 <div class="g"><dt id="gl-subagent">Subagent</dt><dd>最大4並列でレビュー・テスト・探索を同時実行。Terminal 4分割で4セッション並列管理。</dd></div>
 <div class="g"><dt id="gl-wsl2">WSL2</dt><dd>主作業環境。Windows Terminal 4分割でClaude Codeを4タブ並列稼働。</dd></div>
 <div class="g"><dt id="gl-tailscale">Tailscale VPN</dt><dd>スマホから自宅PCのWSL2へ安全接続。モバイル開発環境の基盤。</dd></div>
 <div class="g"><dt id="gl-tmux">tmux</dt><dd>セッションを裏で維持・再接続で作業状態に復帰。OpenClaw 2台運用でも常時稼働。</dd></div>
-<div class="g"><dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（BUYMA販売管理・41,939行・2,178テスト）のWebフレームワーク。</dd></div>
+<div class="g"><dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（フリマ販売管理・41,939行・2,178テスト）のWebフレームワーク。</dd></div>
 <div class="g"><dt id="gl-celery">Celery</dt><dd>同システムの定期実行ワーカー。タスク未登録事故を発見し回帰テスト新設（本文カード参照）。</dd></div>
 <div class="g"><dt id="gl-redis">Redis</dt><dd>同システムの重複実行ロック・Celeryブローカー・キャッシュ。</dd></div>
 <div class="g"><dt id="gl-cicd">CI</dt><dd>NexusCore 5,000+ / atelier 2,178テストをGitHub Actionsで自動実行。本ページはpre-commitが数値整合を自動検査。</dd></div>
