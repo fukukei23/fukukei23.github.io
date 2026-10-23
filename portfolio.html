@@ -175,7 +175,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <div class="card">
       <h3>なぜ仕組みが要るか — 実例</h3>
       <ul>
-        <li>対象: フリマ販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>）</li>
+        <li>対象: BUYMA（ファッションEC）販売管理システム（<a class="gl" href="#gl-flask">Flask</a> + <a class="gl" href="#gl-celery">Celery</a> + <a class="gl" href="#gl-redis">Redis</a>）</li>
         <li>テスト<b>2,000件超が全て緑・<a class="gl" href="#gl-cicd">CI</a>も緑</b>の状態で、本番の定期処理が動いていない状態を検知。原因は「ワーカーがタスクを登録しているか」を<b>テストが検証していなかった</b>というAI生成コード特有の盲点</li>
         <li>この盲点を捕まえたのはコード読解ではなく、<b>「1度目で終わらず、独立した2度目のレビューを課す」運用ルール</b></li>
       </ul>
@@ -251,7 +251,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <ul>
       <li>5カテゴリ59体: engineering / testing / specialized / design / marketing</li>
       <li>3層Heartbeat（障害を自動検知する死活監視）: 1分（プロセス死活）/ 5分（設定・依存サービス）/ 30分（対話・タスク監視）</li>
-      <li>3モデル使い分け: GLM-5 / GLM-4.7 / MiniMax で月額数千円運用</li>
+      <li>3モデル使い分け: GLM-5 / GLM-5.3 / MiniMax で月額数千円運用</li>
       <li>コスト管理ルール: 3千/1万円の閾値で承認フロー自動分岐</li>
     </ul>
   </div>
@@ -302,7 +302,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <h2>その他の成果物（開発済み・本番未導入）</h2>
 <table>
   <tr><th>成果物</th><th>概要</th><th>URL</th></tr>
-  <tr><td>Atelier Kyo Manager</td><td>フリマ販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
+  <tr><td>Atelier Kyo Manager</td><td>BUYMA（ファッションEC）販売管理システム。出品パイプライン自動化・価格スクレイピング・注文ステートマシン・AIチャットボット</td><td><a href="https://github.com/fukukei23/atelier-kyo-manager">GitHub</a></td></tr>
   <tr><td>LINE予約システム</td><td>LINE Bot + <a class="gl" href="#gl-stripe">Stripe</a>決済 + <a class="gl" href="#gl-cf-workers">Cloudflare Workers</a>で構築した予約管理システム</td><td><a href="https://github.com/fukukei23/reserve-optimizer">GitHub</a></td></tr>
   <tr><td>X自動投稿パイプライン</td><td>X（旧Twitter）自動投稿・<a class="gl" href="#gl-oauth">OAuth1</a>永続化・信頼度自動承認・72h SLA（設計・開発中・非公開リポジトリ）</td><td>非公開</td></tr>
   <tr><td>RAG検索エンジン（ssot-search v2）</td><td>個人知識ベース4,000+文書向けの本格<a class="gl" href="#gl-rag">RAG</a>検索。見出し単位チャンキング・日本語意味検索（ruri-v3 + <a class="gl" href="#gl-chromadb">ChromaDB</a>）・ベクトル+字句の<a class="gl" href="#gl-hybrid">ハイブリッド検索</a>・30分毎の差分インデックス更新・外部LLM生成テストセット39問による3条件精度評価（<a class="gl" href="#gl-recall">Recall@5</a> 0.026→0.744）</td><td>非公開（詳細は面談で説明可能）</td></tr>
@@ -351,7 +351,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <div class="g"><dt id="gl-wsl2">WSL2</dt><dd>主作業環境。Windows Terminal 4分割でClaude Codeを4タブ並列稼働。</dd></div>
 <div class="g"><dt id="gl-tailscale">Tailscale VPN</dt><dd>スマホから自宅PCのWSL2へ安全接続。モバイル開発環境の基盤。</dd></div>
 <div class="g"><dt id="gl-tmux">tmux</dt><dd>セッションを裏で維持・再接続で作業状態に復帰。OpenClaw 2台運用でも常時稼働。</dd></div>
-<div class="g"><dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（フリマ販売管理・41,939行・2,178テスト）のWebフレームワーク。</dd></div>
+<div class="g"><dt id="gl-flask">Flask</dt><dd>atelier-kyo-manager（BUYMA販売管理・41,939行・2,178テスト）のWebフレームワーク。</dd></div>
 <div class="g"><dt id="gl-celery">Celery</dt><dd>同システムの定期実行ワーカー。タスク未登録事故を発見し回帰テスト新設（本文カード参照）。</dd></div>
 <div class="g"><dt id="gl-redis">Redis</dt><dd>同システムの重複実行ロック・Celeryブローカー・キャッシュ。</dd></div>
 <div class="g"><dt id="gl-cicd">CI</dt><dd>NexusCore 5,000+ / atelier 2,178テストをGitHub Actionsで自動実行。本ページはpre-commitが数値整合を自動検査。</dd></div>
