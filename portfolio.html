@@ -251,7 +251,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
     <ul>
       <li>5カテゴリ59体: engineering / testing / specialized / design / marketing</li>
       <li>3層Heartbeat（障害を自動検知する死活監視）: 1分（プロセス死活）/ 5分（設定・依存サービス）/ 30分（対話・タスク監視）</li>
-      <li>3モデル使い分け: GLM-5 / GLM-5.3 / MiniMax で月額数千円運用</li>
+      <li>2モデル運用: GLM系 + MiniMax で月額数千円運用</li>
       <li>コスト管理ルール: 3千/1万円の閾値で承認フロー自動分岐</li>
     </ul>
   </div>
@@ -341,7 +341,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します。各用語の「私の実装」を1-2行で示します。</div>
 <dl class="gl-grid">
 <div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月96億トークンを2層に振り分け・$180/月・約67%コスト削減。</dd></div>
-<div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築（LLM API契約はGLM/MiniMaxのみ・Claude API不使用）。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
+<div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築。実行LLMも自作プロキシ経由でGLM/MiniMaxの2種に差し替え運用（Claude API不使用）。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
 <div class="g"><dt id="gl-hooks">Hooks</dt><dd>5種稼働: 破壊コマンド遮断（19パターン）/ 操作履歴CSV / セッション開始時handoff表示 / 終了時日記追記 / Discord通知。</dd></div>
 <div class="g"><dt id="gl-skills">Skills</dt><dd>自作スキル30+個（導入含め全117スキル運用・sentaku / ssot-record / multi-llm-review等）。作業手順をSKILL.md化して再利用。</dd></div>
 <div class="g"><dt id="gl-croncreate">CronCreate</dt><dd>無人ループ稼働中: 30分毎自動同期・毎朝Daily Triage・stats集計等、durable cron約9件。</dd></div>
