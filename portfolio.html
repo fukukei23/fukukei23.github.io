@@ -91,7 +91,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </div>
 <div class="subtitle">AIエージェント開発・運用 / Python / <a class="gl" href="#gl-llm-routing">LLMルーティング</a> / 2025年5月〜活動開始</div>
 <p style="margin: 8px 0 10px; line-height: 1.7;">
-  コードはAI（<a class="gl" href="#gl-claude-code">Claude Code</a>等）が生成し、自身は<b>要件の言語化・設計・検証・運用</b>に集中するAI駆動開発スタイルです。下記の数値はAI生成を含む出力規模であり（手書き行数ではありません）、品質は<b>複数LLM独立レビュー × 実測裁定 × 記録</b>のプロセスで担保しています。ベースは陸上自衛隊19年で培った<b>計画策定・30-40人のチーム指揮・文書作成</b>——「何を作るかを固め、形になったものを検証する」仕事をAI時代に組み直したものです。
+  私は、コードの生成をAI（<a class="gl" href="#gl-claude-code">Claude Code</a>等）に任せ、<b>要件の言語化・設計・検証・運用</b>を担う「AI駆動開発」でシステムを作っています。この進め方は、陸上自衛隊で19年間培った「何を作るかを固め、形になったものを検証する」という仕事の型を応用したものです。<b>計画策定・30〜40人のチーム指揮・文書作成</b>の経験が、AI時代の開発の土台になっています。
 </p>
 <p style="margin: 0 0 10px; font-size: 12px;"><b>ご提供できること</b>: 業務自動化・AIアプリ開発の<b>要件整理から実装、24時間安定運用まで</b>の一貫対応（受託納品実績あり・下記参照）</p>
 
@@ -104,7 +104,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   <div class="stat"><div class="num">20</div><div class="label">技術記事（公開済み）</div></div>
   <div class="stat"><div class="num">約6ヶ月</div><div class="label">24h本番運用（OpenClaw運用・2026-02開始）</div></div>
 </div>
-<div style="font-size: 11px; opacity: 0.8;">※ 数値は2026-08〜10の各実測時点値（SSOT正典から転記・丸め表記）・数値は活動量・継続の指標であり開発速度の指標ではありません・専門用語は末尾の用語集（P.4-5）を参照</div>
+<div style="font-size: 11px; opacity: 0.8;">※ 数値はAI生成を含む出力規模（手書き行数ではありません）で、2026-08〜10の各実測時点の値（内部の記録源から転記・概数に丸め表記）。数値は活動量・継続の指標であり、開発速度の指標ではありません。<br>※ 品質は複数のLLMによる独立レビュー、実測による検証、記録の3層プロセスで担保しています。<br>※ 専門用語は末尾の用語集（P.4〜5）を参照</div>
 
 <div class="accent">
   <h2>武器: Claude Codeフルスタックカスタマイズで開発生産性を最大化</h2>
@@ -158,7 +158,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
   <div class="card" style="border-color: #2563eb; background: #f8fafc;">
     <h3>Obsidian SSOT — プロジェクトライフサイクル管理と知識の資産化</h3>
     <ul>
-      <li><b>複数AIエージェントが共有する自設計の永続記憶基盤</b>: Claude Code / Cursor / Codex / GLM 等、AIを替えてもプロジェクト文脈と判断履歴が一貫して引き継がれる（単一AIの閉じた記憶でなし）</li>
+      <li><b>複数AIエージェントが共有する自設計の永続記憶基盤</b>: Claude Code / Cursor / Codex / GLM 等、AIを替えてもプロジェクト文脈と判断履歴が一貫して引き継がれる（単一のAIだけの閉じた記憶ではなく）</li>
       <li><b>プロジェクトの全ライフサイクルを一貫管理</b>: 要件→計画→実装→意思決定→成果→残課題→次アクション→handoff（引継ぎ）の循環を、セッションを跨いでも迷子なく回し続ける</li>
       <li><b>知識の資産化（複利）</b>: 積み上げた判断・スキル・運用ルールが再利用可能な資産として結晶化 — 新プロジェクトをゼロから考えず速く立ち上げる</li>
       <li><b>規模の実績</b>: 判断記録（AIエージェントへの意思決定ログ） <b>1,300+件</b>（30+プロジェクト分・2026-08実測）/ handoff（作業引き継ぎ記録） <b>490+件</b> / 自作スキル <b>30+個</b>（導入含め全117スキル運用） / 日次運用 <b>140+日分</b></li>
@@ -284,7 +284,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
         <li><b>自動判別</b>: 楽曲コードの頭文字からJASRAC/NexTone欄を自動振り分け</li>
         <li><b>フェイルセーフ</b>: 空行自動削除・50件上限到達で自動停止</li>
         <li><b>AI駆動開発</b>: バグ報告→<b class="highlight">2.5時間で修正納品</b>。実質4日間で本番安定稼働</li>
-        <li><b>受託の一気通貫</b>: 要件確認（Excel仕様）→設計→exe納品→本番検証→修正対応まで<b>納品責任を持って完走</b>——「作って終わり」でない保守まで含む対応</li>
+        <li><b>受託の一気通貫</b>: 要件確認（Excel仕様）→設計→exe納品→本番検証→修正対応まで<b>納品責任を持って完走</b>——「作って終わり」ではなく保守まで含む対応</li>
       </ul>
     </div>
   </div>
@@ -338,7 +338,7 @@ a.gl { color: inherit; text-decoration: underline dotted; text-decoration-color:
 </table>
 
 <h2 id="glossary">用語集（私のプロジェクトでの実装）</h2>
-<div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応します。各用語の「私の実装」を1-2行で示します。</div>
+<div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">本文中の<b>点線の下線</b>が付いた用語と対応しています。各用語の「私の実装」を1-2行で示します。</div>
 <dl class="gl-grid">
 <div class="g"><dt id="gl-llm-routing">LLMルーティング</dt><dd>自作プロキシ（glm-rate-proxy）で月96億トークンを2層に振り分け・$180/月・約67%コスト削減。</dd></div>
 <div class="g"><dt id="gl-claude-code">Claude Code</dt><dd>本ページの成果は全てClaude Code上で構築。実行LLMも自作プロキシ経由でGLM/MiniMaxの2種に差し替え運用（Claude API不使用）。Hooks・Skills・Subagent・SSOT連動で全面カスタマイズ。</dd></div>
